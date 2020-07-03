@@ -26,7 +26,15 @@ namespace Myjnia
             SetContentView(Resource.Layout.login);
             // Create your application here
             Button loginButton = FindViewById<Button>(Resource.Id.LoginButton);
+            TextView clicktoregister = FindViewById<TextView>(Resource.Id.clickToRegister);
             loginButton.Click += LoginButton_Click;
+            clicktoregister.Click += Clicktoregister_Click;
+        }
+
+        private void Clicktoregister_Click(object sender, EventArgs e)
+        {
+            Intent intent = new Intent(this, typeof(RegisterActivity));
+            StartActivity(intent);
         }
 
         private void LoginButton_Click(object sender, EventArgs e)
@@ -53,6 +61,10 @@ namespace Myjnia
             {
                 Log.Info("app", e.ToString());
             }
+        }
+
+        private async void Register()
+        {
         }
     }
 }

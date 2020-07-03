@@ -27,7 +27,7 @@
     
     <android.support.design.widget.TextInputLayout
         android:layout_marginTop="10dp"
-        android:id="@+id/emailLoginText"
+        android:id="@+id/emailRegisterText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         >
@@ -42,7 +42,7 @@
 
     <android.support.design.widget.TextInputLayout
         android:layout_marginTop="10dp"
-        android:id="@+id/passwordLoginText"
+        android:id="@+id/passwordRegisterText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         >
@@ -50,16 +50,30 @@
         android:textSize="18sp"
         android:hint="Password"
         android:inputType="textPassword"
-        android:imeOptions="actionDone"
+        android:imeOptions="actionNext"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
     </android.support.design.widget.TextInputLayout>
         
+    <android.support.design.widget.TextInputLayout
+        android:layout_marginTop="10dp"
+        android:id="@+id/passwordconfirmRegisterText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
+    <EditText
+        android:textSize="18sp"
+        android:hint="Confirm Password"
+        android:inputType="textPassword"
+        android:imeOptions="actionDone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+    </android.support.design.widget.TextInputLayout>
     <Button
-        android:id="@+id/LoginButton"
+        android:id="@+id/RegisterButton"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="60dp"
-        android:text="Login"
+        android:text="Register"
         android:background="@drawable/roundbutton"
         android:textColor="@color/colorPrimary"
         android:textAllCaps="false"
@@ -67,16 +81,6 @@
         android:layout_height="45dp"/>
         
 
-    <TextView
-        android:id="@+id/clickToRegister"
-        android:layout_marginTop="30dp"
-        android:textSize="16sp"
-        android:gravity="center"
-        android:textColor="@color/colorPrimary"
-        android:textStyle="bold"
-        android:text="Click here to Sign Up"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
 
         </LinearLayout>
 </LinearLayout>
