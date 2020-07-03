@@ -3,6 +3,7 @@ using Android.OS;
 using Android.Support.V7.App;
 using Android.Runtime;
 using Android.Widget;
+using Android.Content;
 
 namespace Myjnia
 {
@@ -13,7 +14,9 @@ namespace Myjnia
         {
             base.OnCreate(savedInstanceState);
             // Set our view from the "main" layout resource
-            SetContentView(Resource.Layout.login);
+            SetContentView(Resource.Layout.activity_main);
+            Intent intent = new Intent(this, typeof(LoginActivity));
+            StartActivity(intent);
         }
     }
 }
