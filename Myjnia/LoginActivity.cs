@@ -73,12 +73,17 @@ namespace Myjnia
                 var resultObject = JObject.Parse(result);
                 string token = resultObject["token"].ToString();
 
-                var toast2 = Toast.MakeText(this, token, ToastLength.Short);
-                toast2.Show();
+                toast = Toast.MakeText(this, token, ToastLength.Short);
+                toast.Show();
                 if (response.IsSuccessStatusCode)
                 {
                     Intent intent = new Intent(this, typeof(HomeActivity));
                     StartActivity(intent);
+                }
+                else
+                {
+                    toast = Toast.MakeText(this, "Brak połączenia z serwerem!", ToastLength.Short);
+                    toast.Show();
                 }
             }
             catch (IOException e)
