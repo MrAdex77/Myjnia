@@ -25,6 +25,9 @@ namespace Myjnia
             base.OnCreate(savedInstanceState);
             SetContentView(Resource.Layout.login);
             // Create your application here
+
+            //variables
+
             Button loginButton = FindViewById<Button>(Resource.Id.LoginButton);
             TextView clicktoregister = FindViewById<TextView>(Resource.Id.clickToRegister);
             loginButton.Click += LoginButton_Click;
@@ -50,7 +53,7 @@ namespace Myjnia
                 //get request
                 //var uri = "http://webcode.me";
                 //var result = await client.GetStringAsync(uri);
-                var result = await client.GetAsync("http://80.211.242.184/adrian");
+                var result = await client.GetAsync("http://192.168.43.2:5000/auth/register");
                 //handling answer
                 //var wiadomosc = JsonConvert.DeserializeObject(result);
                 var re = result.StatusCode.ToString();
@@ -61,10 +64,6 @@ namespace Myjnia
             {
                 Log.Info("app", e.ToString());
             }
-        }
-
-        private async void Register()
-        {
         }
     }
 }
