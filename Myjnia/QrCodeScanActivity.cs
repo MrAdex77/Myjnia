@@ -65,22 +65,10 @@ namespace Myjnia
                     Log.Info("blad", ex.ToString());
                 }
             }
-
-            /*
-            await CrossMedia.Current.Initialize();
-            var file = await CrossMedia.Current.TakePhotoAsync(new Plugin.Media.Abstractions.StoreCameraMediaOptions
-            {
-                PhotoSize = Plugin.Media.Abstractions.PhotoSize.Medium,
-                CompressionQuality = 20,
-                Directory = "Sample",
-                Name = "test"
-            });
-            */
         }
 
         private async void Send(string Token, string QRCODE)
         {
-            Log.Error("qrcode", QRCODE);
             using var client = new HttpClient();
             User user = new User
             {
@@ -100,6 +88,7 @@ namespace Myjnia
             {
                 var toast = Toast.MakeText(this, "Wysłano qrCode!", ToastLength.Short);
                 toast.Show();
+                Finish();
             }
             else
             {

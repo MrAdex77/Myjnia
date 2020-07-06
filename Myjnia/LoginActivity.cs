@@ -48,10 +48,26 @@ namespace Myjnia
 
         private void LoginButton_Click(object sender, EventArgs e)
         {
-            Pobierz();
+            if (Walidacja())
+            {
+                Zaloguj();
+            }
         }
 
-        private async void Pobierz()
+        private bool Walidacja()
+        {
+            if (!String.IsNullOrEmpty(Email.Text) && !String.IsNullOrEmpty(Password.Text))
+            {
+                return true;
+            }
+            else
+            {
+                Toast.MakeText(this, "Email lub Haslo jest puste!", ToastLength.Short).Show();
+                return false;
+            }
+        }
+
+        private async void Zaloguj()
         {
             try
             {
@@ -92,9 +108,6 @@ namespace Myjnia
                     Log.Info("blad", ex.ToString());
                 }
 
-                toast = Toast.MakeText(this, token, ToastLength.Short);
-                toast.Show();
-
                 if (response.IsSuccessStatusCode)
                 {
                     Intent intent = new Intent(this, typeof(HomeActivity));
@@ -108,6 +121,7 @@ namespace Myjnia
             }
             catch (IOException e)
             {
+                Toast.MakeText(this, e.ToString(), ToastLength.Short).Show();
                 Log.Info("blad", e.ToString());
             }
         }

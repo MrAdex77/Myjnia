@@ -43,7 +43,23 @@ namespace Myjnia
 
         private void RegisterButton_Click(object sender, EventArgs e)
         {
-            Register();
+            if (Walidacja())
+            {
+                Register();
+            }
+        }
+
+        private bool Walidacja()
+        {
+            if (!String.IsNullOrEmpty(Email.Text) && !String.IsNullOrEmpty(Password.Text) && !String.IsNullOrEmpty(PasswordConfirm.Text))
+            {
+                return true;
+            }
+            else
+            {
+                Toast.MakeText(this, "Email lub Haslo jest puste!", ToastLength.Short).Show();
+                return false;
+            }
         }
 
         private async void Register()
