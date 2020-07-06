@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:background="@android:color/white"
@@ -27,11 +27,12 @@
     
     <android.support.design.widget.TextInputLayout
         android:layout_marginTop="10dp"
-        android:id="@+id/emailRegisterText"
+        android:id="@+id/emailRegisterTextInputLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         >
     <EditText
+        android:id="@+id/emailRegisterText"
         android:textSize="18sp"
         android:hint="Email"
         android:inputType="textEmailAddress"
@@ -42,11 +43,12 @@
 
     <android.support.design.widget.TextInputLayout
         android:layout_marginTop="10dp"
-        android:id="@+id/passwordRegisterText"
+        android:id="@+id/passwordRegisterTextInputLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         >
     <EditText
+        android:id="@+id/passwordRegisterText"
         android:textSize="18sp"
         android:hint="Password"
         android:inputType="textPassword"
@@ -57,11 +59,12 @@
         
     <android.support.design.widget.TextInputLayout
         android:layout_marginTop="10dp"
-        android:id="@+id/passwordconfirmRegisterText"
+        android:id="@+id/passwordconfirmRegisterTextInputLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         >
     <EditText
+        android:id="@+id/passwordconfirmRegisterText"
         android:textSize="18sp"
         android:hint="Confirm Password"
         android:inputType="textPassword"

@@ -27,11 +27,12 @@
     
     <android.support.design.widget.TextInputLayout
         android:layout_marginTop="10dp"
-        android:id="@+id/emailLoginText"
+        android:id="@+id/emailLoginTextInputLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         >
     <EditText
+        android:id="@+id/emailLoginText"
         android:textSize="18sp"
         android:hint="Email"
         android:inputType="textEmailAddress"
@@ -42,11 +43,12 @@
 
     <android.support.design.widget.TextInputLayout
         android:layout_marginTop="10dp"
-        android:id="@+id/passwordLoginText"
+        android:id="@+id/passwordLoginTextInputLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         >
     <EditText
+        android:id="@+id/passwordLoginText"
         android:textSize="18sp"
         android:hint="Password"
         android:inputType="textPassword"

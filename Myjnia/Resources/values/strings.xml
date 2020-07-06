@@ -1,4 +1,12 @@
 <resources>
-    <string name="app_name">Myjnia</string>
-    <string name="action_settings">Settings</string>
+  <string name="app_name">Myjnia</string>
+  <string name="action_settings">Settings</string>
+
+  <!-- Zakladki menu -->
+  <string name="zakladka_1">Skanuj Qr Code</string>
+  <string name="zakladka_2">Deska Rozdzielcza</string>
+  <string name="zakladka_3">Czujniki</string>
+  <string name="zakladka_4">Stop-klatka</string>
+  <string name="zakladka_5">Połączenie</string>
+  <string name="zakladka_6">Ustawienia</string>
 </resources>

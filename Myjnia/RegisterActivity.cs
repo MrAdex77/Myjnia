@@ -21,9 +21,9 @@ namespace Myjnia
     [Activity(Label = "RegisterActivity")]
     public class RegisterActivity : AppCompatActivity
     {
-        private string email;
-        private int password;
-        private int password2;
+        private EditText Email;
+        private EditText Password;
+        private EditText PasswordConfirm;
 
         protected override void OnCreate(Bundle savedInstanceState)
 
@@ -33,6 +33,10 @@ namespace Myjnia
             // Create your application here
 
             //variables
+            Email = FindViewById<EditText>(Resource.Id.emailRegisterText);
+            Password = FindViewById<EditText>(Resource.Id.passwordRegisterText);
+            PasswordConfirm = FindViewById<EditText>(Resource.Id.passwordconfirmRegisterText);
+
             Button registerButton = FindViewById<Button>(Resource.Id.RegisterButton);
             registerButton.Click += RegisterButton_Click;
         }
@@ -52,8 +56,8 @@ namespace Myjnia
                 using var client = new HttpClient();
                 //get request
                 User user = new User();
-                user.email = "adrian123123123@gmail.com";
-                user.password = "Adrian123@";
+                user.email = Email.Text;
+                user.password = Password.Text;
                 string jsonData = JsonConvert.SerializeObject(user);
                 StringContent Content = new StringContent(jsonData, Encoding.UTF8, "application/json");
                 //lokalne
