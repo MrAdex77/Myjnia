@@ -15,6 +15,7 @@ using Android.Views;
 using Android.Widget;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using Xamarin.Essentials;
 
 namespace Myjnia
 {
@@ -57,24 +58,43 @@ namespace Myjnia
                 using var client = new HttpClient();
 
                 //var result = await client.GetAsync("http://192.168.43.2:5000/auth/register");
+                var settings = new JsonSerializerSettings
+                {
+                    NullValueHandling = NullValueHandling.Ignore,
+                    MissingMemberHandling = MissingMemberHandling.Ignore
+                };
                 User user = new User();
                 user.email = Email.Text;
                 user.password = Password.Text;
-                string jsonData = JsonConvert.SerializeObject(user);
+                string jsonData = JsonConvert.SerializeObject(user, settings);
                 StringContent Content = new StringContent(jsonData, Encoding.UTF8, "application/json");
                 var url = "http://192.168.43.2:5000/auth/login";
                 var response = await client.PostAsync(url, Content);
+
+                //handling answer
                 string result = await response.Content.ReadAsStringAsync();
                 var re = response.StatusCode.ToString();
                 // testowekonto@gmail.com Adex123@
                 var toast = Toast.MakeText(this, re, ToastLength.Short);
                 toast.Show();
-
+                //token
                 var resultObject = JObject.Parse(result);
                 string token = resultObject["token"].ToString();
+                //obsługa tokenu
+                try
+                {
+                    await SecureStorage.SetAsync("oauth_token", token);
+                }
+                catch (Exception ex)
+                {
+                    toast = Toast.MakeText(this, "Twoj telefon nie obsluguje SecureStorage!", ToastLength.Short);
+                    toast.Show();
+                    Log.Info("blad", ex.ToString());
+                }
 
                 toast = Toast.MakeText(this, token, ToastLength.Short);
                 toast.Show();
+
                 if (response.IsSuccessStatusCode)
                 {
                     Intent intent = new Intent(this, typeof(HomeActivity));
@@ -82,13 +102,13 @@ namespace Myjnia
                 }
                 else
                 {
-                    toast = Toast.MakeText(this, "Brak połączenia z serwerem!", ToastLength.Short);
-                    toast.Show();
+                    string blad = "Brak połączenia z serwerem! kod: " + response.StatusCode;
+                    toast = Toast.MakeText(this, blad, ToastLength.Short);
                 }
             }
             catch (IOException e)
             {
-                Log.Info("app", e.ToString());
+                Log.Info("blad", e.ToString());
             }
         }
     }

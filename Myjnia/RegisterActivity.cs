@@ -50,31 +50,29 @@ namespace Myjnia
         {
             try
             {
-                //email = FindViewById<TextInputLayout>(Resource.Id.emailRegisterText).EditText.Text;
-                //password = Convert.ToInt32(FindViewById<TextInputLayout>(Resource.Id.passwordRegisterText).EditText.Text);
-                //password2 = Convert.ToInt32(FindViewById<TextInputLayout>(Resource.Id.passwordconfirmRegisterText).EditText.Text);
                 using var client = new HttpClient();
                 //get request
                 User user = new User();
                 user.email = Email.Text;
                 user.password = Password.Text;
-                string jsonData = JsonConvert.SerializeObject(user);
+                var settings = new JsonSerializerSettings
+                {
+                    NullValueHandling = NullValueHandling.Ignore,
+                    MissingMemberHandling = MissingMemberHandling.Ignore
+                };
+                string jsonData = JsonConvert.SerializeObject(user, settings);
                 StringContent Content = new StringContent(jsonData, Encoding.UTF8, "application/json");
                 //lokalne
                 var url = "http://192.168.43.2:5000/auth/register";
-                //publiczne
-                // var url = "http://80.211.242.184/auth/register";
+                // publiczne var url = "http://80.211.242.184/auth/register";
                 var result = await client.PostAsync(url, Content);
-
-                //handling answer
-                //var wiadomosc = JsonConvert.DeserializeObject(result);
                 var re = result.StatusCode.ToString();
                 var toast = Toast.MakeText(this, re, ToastLength.Short);
                 toast.Show();
             }
             catch (IOException e)
             {
-                Log.Info("myjnia", e.ToString());
+                Log.Info("blad", e.ToString());
             }
         }
     }

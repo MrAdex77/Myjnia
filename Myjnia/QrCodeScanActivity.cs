@@ -1,14 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
 using System.Text;
 using Android;
 using Android.App;
 using Android.Content;
 using Android.OS;
 using Android.Runtime;
+using Android.Util;
 using Android.Views;
 using Android.Widget;
+using Newtonsoft.Json;
 using Plugin.Media;
 using Xamarin.Essentials;
 using ZXing.Mobile;
@@ -34,10 +37,10 @@ namespace Myjnia
             // Create your application here
             //await RequestPermissions(permissionGroup, 0);
             //var status = await Permissions.RequestAsync(permissionGroup);
-            TakePhoto();
+            ScanCode();
         }
 
-        private async void TakePhoto()
+        private async void ScanCode()
         {
             MobileBarcodeScanner.Initialize(Application);
             var scanner = new ZXing.Mobile.MobileBarcodeScanner();
@@ -49,6 +52,18 @@ namespace Myjnia
                 var msg = result.Text;
                 var toast = Toast.MakeText(this, msg, ToastLength.Short);
                 toast.Show();
+
+                try
+                {
+                    var oauthToken = await SecureStorage.GetAsync("oauth_token");
+                    Send(oauthToken, msg);
+                }
+                catch (Exception ex)
+                {
+                    toast = Toast.MakeText(this, "Twoj telefon nie obsluguje SecureStorage!", ToastLength.Short);
+                    toast.Show();
+                    Log.Info("blad", ex.ToString());
+                }
             }
 
             /*
@@ -61,6 +76,37 @@ namespace Myjnia
                 Name = "test"
             });
             */
+        }
+
+        private async void Send(string Token, string QRCODE)
+        {
+            Log.Error("qrcode", QRCODE);
+            using var client = new HttpClient();
+            User user = new User
+            {
+                token = Token,
+                qrCode = QRCODE
+            };
+            var settings = new JsonSerializerSettings
+            {
+                NullValueHandling = NullValueHandling.Ignore,
+                MissingMemberHandling = MissingMemberHandling.Ignore
+            };
+            string jsonData = JsonConvert.SerializeObject(user, settings);
+            StringContent Content = new StringContent(jsonData, Encoding.UTF8, "application/json");
+            var url = "http://192.168.43.2:5000/auth/compareQrCode";
+            var response = await client.PostAsync(url, Content);
+            if (response.IsSuccessStatusCode)
+            {
+                var toast = Toast.MakeText(this, "Wysłano qrCode!", ToastLength.Short);
+                toast.Show();
+            }
+            else
+            {
+                string blad = "Brak połączenia z serwerem! kod: " + response.StatusCode;
+                var toast = Toast.MakeText(this, blad, ToastLength.Short);
+                toast.Show();
+            }
         }
 
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, Android.Content.PM.Permission[] grantResults)
