@@ -10,6 +10,8 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using Plugin.Media;
+using Xamarin.Essentials;
+using ZXing.Mobile;
 
 namespace Myjnia
 {
@@ -30,12 +32,26 @@ namespace Myjnia
             Xamarin.Essentials.Platform.Init(this, savedInstanceState); // add this line to your code, it may also be called: bundle
 
             // Create your application here
-            RequestPermissions(permissionGroup, 0);
+            //await RequestPermissions(permissionGroup, 0);
+            //var status = await Permissions.RequestAsync(permissionGroup);
             TakePhoto();
         }
 
         private async void TakePhoto()
         {
+            MobileBarcodeScanner.Initialize(Application);
+            var scanner = new ZXing.Mobile.MobileBarcodeScanner();
+
+            var result = await scanner.Scan();
+
+            if (result != null)
+            {
+                var msg = result.Text;
+                var toast = Toast.MakeText(this, msg, ToastLength.Short);
+                toast.Show();
+            }
+
+            /*
             await CrossMedia.Current.Initialize();
             var file = await CrossMedia.Current.TakePhotoAsync(new Plugin.Media.Abstractions.StoreCameraMediaOptions
             {
@@ -44,6 +60,7 @@ namespace Myjnia
                 Directory = "Sample",
                 Name = "test"
             });
+            */
         }
 
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, Android.Content.PM.Permission[] grantResults)
