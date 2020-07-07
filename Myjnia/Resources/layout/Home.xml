@@ -14,19 +14,40 @@
     android:theme="@style/AppTheme.DarkAppBar"
     android:layout_height="?android:attr/actionBarSize" />
     -->
-    <TextView
-        android:id="@+id/WelcomeMessage"
-        android:layout_marginTop="20dp"
-        android:gravity="center"
-        android:textSize="20dp"
-        android:text="Witaj, email"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
 
-    <ScrollView
-        android:scrollbars="vertical"
+
+      <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content"
+        android:padding="10dp">
+    
+    <ImageView
+        android:id="@+id/UserHomeImageView"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_centerVertical="true"
+        android:src="@drawable/account"/>
+        <TextView
+        android:id="@+id/WelcomeMessage"
+        android:layout_marginLeft="10dp"
+        android:textSize="18dp"
+        android:textStyle="bold"
+        android:text="Witaj, email"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/UserHomeImageView"/>
+
+        <TextView
+        android:id="@+id/WelcomeMessage2"
+        android:layout_marginLeft="10dp"
+        android:textSize="16dp"
+        android:text="Saldo: 50 zl"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/UserHomeImageView"
+        android:layout_below="@+id/WelcomeMessage"/>
+    </RelativeLayout>
+
 
         <GridLayout
             android:layout_gravity="center"
@@ -37,6 +58,7 @@
             android:layout_height="wrap_content"
             app:cardCornerRadius="4dp"
             app:cardElevation="2dp"
+            android:layout_marginTop="20dp"
             android:layout_marginBottom="10dp">
             <!-- Row One -->
 
@@ -256,5 +278,5 @@
             </android.support.v7.widget.CardView>
             -->
         </GridLayout>
-    </ScrollView>
+    
 </LinearLayout>

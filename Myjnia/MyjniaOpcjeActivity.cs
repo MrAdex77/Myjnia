@@ -13,6 +13,7 @@ using Android.Util;
 using Android.Views;
 using Android.Widget;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using Xamarin.Essentials;
 
 namespace Myjnia
@@ -23,6 +24,10 @@ namespace Myjnia
         private Button btSzybkie;
         private Button btEkspert;
         private Button btPremium;
+        private TextView licznik;
+        private DateTime dateTime;
+        private int timerCounter = 0;
+        private System.Timers.Timer countDown = new System.Timers.Timer();
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
@@ -32,24 +37,60 @@ namespace Myjnia
             btSzybkie = FindViewById<Button>(Resource.Id.MyjniaOpcjaSzybkie);
             btEkspert = FindViewById<Button>(Resource.Id.MyjniaOpcjaEkspert);
             btPremium = FindViewById<Button>(Resource.Id.MyjniaOpcjaPremium);
+            licznik = FindViewById<TextView>(Resource.Id.timeCounterTextView);
             btSzybkie.Click += BtSzybkie_Click;
             btEkspert.Click += BtEkspert_Click;
             btPremium.Click += BtPremium_Click;
+            //variables
+
+            countDown.Interval = 1000;
+            countDown.Elapsed += CountDown_Elapsed;
+            countDown.Enabled = false;
+        }
+
+        private void CountDown_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
+        {
+            timerCounter++;
+
+            DateTime dt = new DateTime();
+            dt = dateTime.AddSeconds(-1);
+            var dateDifference = dateTime.Subtract(dt);
+            dateTime -= dateDifference;
+
+            RunOnUiThread(() =>
+            {
+                licznik.Text = dateTime.ToString("mm:ss");
+            });
+
+            //Ended
+            if (timerCounter == 120)
+            {
+                countDown.Enabled = false;
+            }
+        }
+
+        private void StartCzas(double ile)
+        {
+            dateTime = new DateTime();
+            dateTime = dateTime.AddMinutes(ile);
+            licznik.Text = dateTime.ToString("mm:ss");
+
+            countDown.Enabled = true;
         }
 
         private async void BtPremium_Click(object sender, EventArgs e)
         {
-            await Send("Premium");
+            await Send("premium");
         }
 
         private async void BtEkspert_Click(object sender, EventArgs e)
         {
-            await Send("Ekspert");
+            await Send("expert");
         }
 
         private async void BtSzybkie_Click(object sender, EventArgs e)
         {
-            await Send("Szybkie");
+            await Send("szybkie");
         }
 
         private async Task Send(string opcja)
@@ -77,11 +118,16 @@ namespace Myjnia
             };
             string jsonData = JsonConvert.SerializeObject(user, settings);
             StringContent Content = new StringContent(jsonData, Encoding.UTF8, "application/json");
-            var url = "http://192.168.43.2:5000/machine/optionsMachine";
+            var url = "http://192.168.43.2:5000/machine/startMachine";
             var response = await client.PostAsync(url, Content);
             if (response.IsSuccessStatusCode)
             {
                 Toast.MakeText(this, "Czas sie odlicza myj auto!", ToastLength.Short).Show();
+                string result = await response.Content.ReadAsStringAsync();
+                var resultObject = JObject.Parse(result);
+                string czas = resultObject["time"].ToString();
+                Toast.MakeText(this, czas, ToastLength.Short).Show();
+                StartCzas(Convert.ToDouble(czas));
             }
             else
             {
