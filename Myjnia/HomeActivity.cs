@@ -18,11 +18,10 @@ namespace Myjnia
         //layouts
         private LinearLayout qrcodeLayout;
 
-        private LinearLayout spaceLayout;
-        private LinearLayout geographyLayout;
-        private LinearLayout engineeringLayout;
-        private LinearLayout programmingLayout;
-        private LinearLayout businessLayout;
+        private LinearLayout StanMaszynLayout;
+        private LinearLayout KontoLayout;
+        private LinearLayout UstawieniaLayout;
+        private TextView welcomeMessage;
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
@@ -32,15 +31,15 @@ namespace Myjnia
 
             //View Setups
             qrcodeLayout = (LinearLayout)FindViewById(Resource.Id.qrcodeLayout);
-            spaceLayout = (LinearLayout)FindViewById(Resource.Id.spaceLayout);
-            geographyLayout = (LinearLayout)FindViewById(Resource.Id.geographyLayout);
-            engineeringLayout = (LinearLayout)FindViewById(Resource.Id.engineeringLayout);
-            programmingLayout = (LinearLayout)FindViewById(Resource.Id.programmingLayout);
-            businessLayout = (LinearLayout)FindViewById(Resource.Id.businessLayout);
+            StanMaszynLayout = (LinearLayout)FindViewById(Resource.Id.StanMaszynLayout);
+            KontoLayout = (LinearLayout)FindViewById(Resource.Id.KontoLayout);
+            UstawieniaLayout = (LinearLayout)FindViewById(Resource.Id.UstawieniaLayout);
+            welcomeMessage = (TextView)FindViewById(Resource.Id.WelcomeMessage);
             //Click event handlers
             qrcodeLayout.Click += QrcodeLayout_Click;
 
             //
+            welcomeMessage.Text = "Witaj, " + Intent.GetStringExtra("email") + "!";
         }
 
         private void QrcodeLayout_Click(object sender, EventArgs e)

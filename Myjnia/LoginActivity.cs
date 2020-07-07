@@ -74,7 +74,6 @@ namespace Myjnia
             {
                 using var client = new HttpClient();
 
-                //var result = await client.GetAsync("http://192.168.43.2:5000/auth/register");
                 var settings = new JsonSerializerSettings
                 {
                     NullValueHandling = NullValueHandling.Ignore,
@@ -129,6 +128,7 @@ namespace Myjnia
                         }
                         Toast.MakeText(this, "Zalogowano!", ToastLength.Short).Show();
                         Intent intent = new Intent(this, typeof(HomeActivity));
+                        intent.PutExtra("email", user.email);
                         StartActivity(intent);
                         break;
                 }

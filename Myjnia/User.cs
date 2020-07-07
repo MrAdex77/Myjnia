@@ -20,5 +20,7 @@ namespace Myjnia
         public string token { get; set; }
 
         public string qrCode { get; set; }
+
+        public string option { get; set; }
     }
 }

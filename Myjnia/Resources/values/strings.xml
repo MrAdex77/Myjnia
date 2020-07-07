@@ -4,9 +4,9 @@
 
   <!-- Zakladki menu -->
   <string name="zakladka_1">Skanuj Qr Code</string>
-  <string name="zakladka_2">Opcja 2</string>
-  <string name="zakladka_3">Opcja 3</string>
-  <string name="zakladka_4">Opcja 4</string>
-  <string name="zakladka_5">Opcja 5</string>
+  <string name="zakladka_2">Stan Maszyn</string>
+  <string name="zakladka_3">Konto</string>
+  <string name="zakladka_4">Ustawienia</string>
+  <string name="zakladka_5">Konto</string>
   <string name="zakladka_6">Ustawienia</string>
 </resources>

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
 using Android;
@@ -22,13 +23,6 @@ namespace Myjnia
     [Activity(Label = "QrCodeScanActivity")]
     public class QrCodeScanActivity : Activity
     {
-        private readonly string[] permissionGroup =
-        {
-            Manifest.Permission.ReadExternalStorage,
-            Manifest.Permission.WriteExternalStorage,
-            Manifest.Permission.Camera
-        };
-
         protected override void OnCreate(Bundle savedInstanceState)
 
         {
@@ -44,7 +38,7 @@ namespace Myjnia
         private async void ScanCode()
         {
             MobileBarcodeScanner.Initialize(Application);
-            var scanner = new ZXing.Mobile.MobileBarcodeScanner();
+            var scanner = new MobileBarcodeScanner();
 
             var result = await scanner.Scan();
 
@@ -71,9 +65,9 @@ namespace Myjnia
         private async Task Send(string Token, string QRCODE)
         {
             using var client = new HttpClient();
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", Token);
             User user = new User
             {
-                token = Token,
                 qrCode = QRCODE
             };
             var settings = new JsonSerializerSettings
@@ -87,9 +81,10 @@ namespace Myjnia
             var response = await client.PostAsync(url, Content);
             if (response.IsSuccessStatusCode)
             {
-                var toast = Toast.MakeText(this, "Wysłano qrCode!", ToastLength.Short);
-                toast.Show();
+                Toast.MakeText(this, "Wysłano qrCode!", ToastLength.Short).Show();
                 Finish();
+                Intent intent = new Intent(this, typeof(MyjniaOpcjeActivity));
+                StartActivity(intent);
             }
             else
             {

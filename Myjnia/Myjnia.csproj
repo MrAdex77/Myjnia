@@ -68,6 +68,7 @@
     <Compile Include="HomeActivity.cs" />
     <Compile Include="LoginActivity.cs" />
     <Compile Include="MainActivity.cs" />
+    <Compile Include="MyjniaOpcjeActivity.cs" />
     <Compile Include="QrCodeScanActivity.cs" />
     <Compile Include="RegisterActivity.cs" />
     <Compile Include="Resources\Resource.designer.cs" />
