@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
 using System.Text;
+using System.Threading.Tasks;
 using Android;
 using Android.App;
 using Android.Content;
@@ -56,7 +57,7 @@ namespace Myjnia
                 try
                 {
                     var oauthToken = await SecureStorage.GetAsync("oauth_token");
-                    Send(oauthToken, msg);
+                    await Send(oauthToken, msg);
                 }
                 catch (Exception ex)
                 {
@@ -67,7 +68,7 @@ namespace Myjnia
             }
         }
 
-        private async void Send(string Token, string QRCODE)
+        private async Task Send(string Token, string QRCODE)
         {
             using var client = new HttpClient();
             User user = new User

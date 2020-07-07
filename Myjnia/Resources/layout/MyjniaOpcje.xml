@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:padding="16dp"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    
+    <TextView
+         android:id="@+id/timeCounterTextView"
+         android:layout_width="match_parent"
+         android:layout_height="0dp"
+         android:layout_weight="0.15"
+         android:gravity="center"
+         android:textSize="28sp"
+         android:textStyle="bold"
+         android:text="01:33"
+         />
+
+
+
+        <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.6"
+        android:orientation="vertical">
+            <TextView
+            android:id="@+id/ChooseOption"
+            android:text="Wybierz opcje:"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:gravity="center"
+            android:textStyle="bold"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="0dp"
+            />
+
+        <Button
+        android:id="@+id/MyjniaOpcjaSzybkie"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="10dp"
+        android:text="Szybkie"
+        android:background="@drawable/roundbutton"
+        android:textColor="@color/colorPrimary"
+        android:textAllCaps="false"
+        android:layout_width="300dp"
+        android:layout_height="45dp"/>
+
+        <Button
+        android:id="@+id/MyjniaOpcjaEkspert"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="10dp"
+        android:text="Ekspert"
+        android:background="@drawable/roundbutton"
+        android:textColor="@color/colorPrimary"
+        android:textAllCaps="false"
+        android:layout_width="300dp"
+        android:layout_height="45dp"/>
+
+        <Button
+        android:id="@+id/MyjniaOpcjaPremium"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="10dp"
+        android:text="Premium"
+        android:background="@drawable/roundbutton"
+        android:textColor="@color/colorPrimary"
+        android:textAllCaps="false"
+        android:layout_width="300dp"
+        android:layout_height="45dp"/>
+
+    </LinearLayout>
+
+    
+    
+    </LinearLayout>
+
+</LinearLayout>

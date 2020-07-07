@@ -10,6 +10,7 @@ using Android.App;
 using Android.Content;
 using Android.OS;
 using Android.Runtime;
+using Android.Support.V7.App;
 using Android.Util;
 using Android.Views;
 using Android.Widget;
@@ -20,7 +21,7 @@ using Xamarin.Essentials;
 namespace Myjnia
 {
     [Activity(Label = "LoginActivity")]
-    public class LoginActivity : Activity
+    public class LoginActivity : AppCompatActivity
     {
         private EditText Email;
         private EditText Password;
