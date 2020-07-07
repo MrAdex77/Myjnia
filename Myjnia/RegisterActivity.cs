@@ -2,9 +2,10 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Net;
 using System.Net.Http;
 using System.Text;
-
+using System.Threading.Tasks;
 using Android.App;
 using Android.Content;
 using Android.OS;
@@ -41,11 +42,11 @@ namespace Myjnia
             registerButton.Click += RegisterButton_Click;
         }
 
-        private void RegisterButton_Click(object sender, EventArgs e)
+        private async void RegisterButton_Click(object sender, EventArgs e)
         {
             if (Walidacja())
             {
-                Register();
+                await Register();
             }
         }
 
@@ -62,15 +63,17 @@ namespace Myjnia
             }
         }
 
-        private async void Register()
+        private async Task Register()
         {
             try
             {
                 using var client = new HttpClient();
                 //get request
-                User user = new User();
-                user.email = Email.Text;
-                user.password = Password.Text;
+                User user = new User
+                {
+                    email = Email.Text,
+                    password = Password.Text
+                };
                 var settings = new JsonSerializerSettings
                 {
                     NullValueHandling = NullValueHandling.Ignore,
@@ -81,10 +84,28 @@ namespace Myjnia
                 //lokalne
                 var url = "http://192.168.43.2:5000/auth/register";
                 // publiczne var url = "http://80.211.242.184/auth/register";
-                var result = await client.PostAsync(url, Content);
-                var re = result.StatusCode.ToString();
-                var toast = Toast.MakeText(this, re, ToastLength.Short);
-                toast.Show();
+                var response = await client.PostAsync(url, Content);
+                switch (response.StatusCode)
+                {
+                    case HttpStatusCode.Forbidden:
+                        Toast.MakeText(this, "Wprowadziles zle dane!", ToastLength.Short).Show();
+                        break;
+
+                    case HttpStatusCode.Unauthorized:
+                        Toast.MakeText(this, "Nie uwierzytelniono!", ToastLength.Short).Show();
+                        break;
+
+                    case HttpStatusCode.InternalServerError:
+                        string blad = "Brak połączenia z serwerem! kod: " + response.StatusCode;
+                        Toast.MakeText(this, blad, ToastLength.Short).Show();
+                        break;
+
+                    case HttpStatusCode.OK:
+                        Toast.MakeText(this, "Zarejestrowano!", ToastLength.Short).Show();
+                        Intent intent = new Intent(this, typeof(LoginActivity));
+                        StartActivity(intent);
+                        break;
+                }
             }
             catch (IOException e)
             {

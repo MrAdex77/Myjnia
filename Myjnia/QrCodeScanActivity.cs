@@ -82,7 +82,7 @@ namespace Myjnia
             };
             string jsonData = JsonConvert.SerializeObject(user, settings);
             StringContent Content = new StringContent(jsonData, Encoding.UTF8, "application/json");
-            var url = "http://192.168.43.2:5000/auth/compareQrCode";
+            var url = "http://192.168.43.2:5000/machine/compareQrCode";
             var response = await client.PostAsync(url, Content);
             if (response.IsSuccessStatusCode)
             {

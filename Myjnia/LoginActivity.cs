@@ -5,7 +5,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Text;
-
+using System.Threading.Tasks;
 using Android.App;
 using Android.Content;
 using Android.OS;
@@ -46,11 +46,11 @@ namespace Myjnia
             StartActivity(intent);
         }
 
-        private void LoginButton_Click(object sender, EventArgs e)
+        private async void LoginButton_Click(object sender, EventArgs e)
         {
             if (Walidacja())
             {
-                Zaloguj();
+                await Zaloguj();
             }
         }
 
@@ -67,7 +67,7 @@ namespace Myjnia
             }
         }
 
-        private async void Zaloguj()
+        private async Task Zaloguj()
         {
             try
             {
@@ -79,9 +79,11 @@ namespace Myjnia
                     NullValueHandling = NullValueHandling.Ignore,
                     MissingMemberHandling = MissingMemberHandling.Ignore
                 };
-                User user = new User();
-                user.email = Email.Text;
-                user.password = Password.Text;
+                User user = new User
+                {
+                    email = Email.Text,
+                    password = Password.Text
+                };
                 string jsonData = JsonConvert.SerializeObject(user, settings);
                 StringContent Content = new StringContent(jsonData, Encoding.UTF8, "application/json");
                 var url = "http://192.168.43.2:5000/auth/login";
@@ -89,39 +91,50 @@ namespace Myjnia
 
                 //handling answer
                 string result = await response.Content.ReadAsStringAsync();
-                var re = response.StatusCode.ToString();
+                //var re = response.StatusCode.ToString();
                 // testowekonto@gmail.com Adex123@
-                var toast = Toast.MakeText(this, re, ToastLength.Short);
-                toast.Show();
-                //token
-                var resultObject = JObject.Parse(result);
-                string token = resultObject["token"].ToString();
-                //obsługa tokenu
-                try
-                {
-                    await SecureStorage.SetAsync("oauth_token", token);
-                }
-                catch (Exception ex)
-                {
-                    toast = Toast.MakeText(this, "Twoj telefon nie obsluguje SecureStorage!", ToastLength.Short);
-                    toast.Show();
-                    Log.Info("blad", ex.ToString());
-                }
+                //Toast.MakeText(this, re, ToastLength.Short).Show();
 
-                if (response.IsSuccessStatusCode)
+                //obsługa tokenu
+                //Toast.MakeText(this, re, ToastLength.Short).Show();
+
+                switch (response.StatusCode)
                 {
-                    Intent intent = new Intent(this, typeof(HomeActivity));
-                    StartActivity(intent);
-                }
-                else
-                {
-                    string blad = "Brak połączenia z serwerem! kod: " + response.StatusCode;
-                    toast = Toast.MakeText(this, blad, ToastLength.Short);
+                    case HttpStatusCode.Forbidden:
+                        Toast.MakeText(this, "Wprowadziles zle dane!", ToastLength.Short).Show();
+                        break;
+
+                    case HttpStatusCode.Unauthorized:
+                        Toast.MakeText(this, "Nie uwierzytelniono!", ToastLength.Short).Show();
+                        break;
+
+                    case HttpStatusCode.InternalServerError:
+                        string blad = "Brak połączenia z serwerem! kod: " + response.StatusCode;
+                        Toast.MakeText(this, blad, ToastLength.Short).Show();
+                        break;
+
+                    case HttpStatusCode.OK:
+                        //token
+                        var resultObject = JObject.Parse(result);
+                        string token = resultObject["token"].ToString();
+                        try
+                        {
+                            await SecureStorage.SetAsync("oauth_token", token);
+                        }
+                        catch (Exception ex)
+                        {
+                            Toast.MakeText(this, "Twoj telefon nie obsluguje SecureStorage!", ToastLength.Short).Show();
+                            Log.Info("blad", ex.ToString());
+                        }
+                        Toast.MakeText(this, "Zalogowano!", ToastLength.Short).Show();
+                        Intent intent = new Intent(this, typeof(HomeActivity));
+                        StartActivity(intent);
+                        break;
                 }
             }
-            catch (IOException e)
+            catch (Exception e)
             {
-                Toast.MakeText(this, e.ToString(), ToastLength.Short).Show();
+                Toast.MakeText(this, e.ToString(), ToastLength.Long).Show();
                 Log.Info("blad", e.ToString());
             }
         }
