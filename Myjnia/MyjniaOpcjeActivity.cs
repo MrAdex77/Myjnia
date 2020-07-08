@@ -96,6 +96,7 @@ namespace Myjnia
         private async Task Send(string opcja)
         {
             string oauthToken = string.Empty;
+            string qrcode = Intent.GetStringExtra("qrcode");
             try
             {
                 oauthToken = await SecureStorage.GetAsync("oauth_token");
@@ -109,7 +110,8 @@ namespace Myjnia
             client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", oauthToken);
             User user = new User
             {
-                option = opcja
+                option = opcja,
+                qrCode = qrcode
             };
             var settings = new JsonSerializerSettings
             {
@@ -126,8 +128,18 @@ namespace Myjnia
                 string result = await response.Content.ReadAsStringAsync();
                 var resultObject = JObject.Parse(result);
                 string czas = resultObject["time"].ToString();
+                string balans = resultObject["balance"].ToString();
                 Toast.MakeText(this, czas, ToastLength.Short).Show();
                 StartCzas(Convert.ToDouble(czas));
+                try
+                {
+                    await SecureStorage.SetAsync("balans", balans);
+                }
+                catch (Exception ex)
+                {
+                    Toast.MakeText(this, "Twoj telefon nie obsluguje SecureStorage!", ToastLength.Short);
+                    Log.Info("blad", ex.ToString());
+                }
             }
             else
             {

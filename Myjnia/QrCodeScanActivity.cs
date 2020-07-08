@@ -13,8 +13,6 @@ using Android.Runtime;
 using Android.Util;
 using Android.Views;
 using Android.Widget;
-using Newtonsoft.Json;
-using Plugin.Media;
 using Xamarin.Essentials;
 using ZXing.Mobile;
 
@@ -45,52 +43,11 @@ namespace Myjnia
             if (result != null)
             {
                 var msg = result.Text;
-                var toast = Toast.MakeText(this, msg, ToastLength.Short);
-                toast.Show();
-
-                try
-                {
-                    var oauthToken = await SecureStorage.GetAsync("oauth_token");
-                    await Send(oauthToken, msg);
-                }
-                catch (Exception ex)
-                {
-                    toast = Toast.MakeText(this, "Twoj telefon nie obsluguje SecureStorage!", ToastLength.Short);
-                    toast.Show();
-                    Log.Info("blad", ex.ToString());
-                }
-            }
-        }
-
-        private async Task Send(string Token, string QRCODE)
-        {
-            using var client = new HttpClient();
-            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", Token);
-            User user = new User
-            {
-                qrCode = QRCODE
-            };
-            var settings = new JsonSerializerSettings
-            {
-                NullValueHandling = NullValueHandling.Ignore,
-                MissingMemberHandling = MissingMemberHandling.Ignore
-            };
-            string jsonData = JsonConvert.SerializeObject(user, settings);
-            StringContent Content = new StringContent(jsonData, Encoding.UTF8, "application/json");
-            var url = "http://192.168.43.2:5000/machine/compareQrCode";
-            var response = await client.PostAsync(url, Content);
-            if (response.IsSuccessStatusCode)
-            {
-                Toast.MakeText(this, "Wysłano qrCode!", ToastLength.Short).Show();
+                Toast.MakeText(this, msg, ToastLength.Short).Show();
                 Finish();
                 Intent intent = new Intent(this, typeof(MyjniaOpcjeActivity));
+                intent.PutExtra("qrcode", msg);
                 StartActivity(intent);
-            }
-            else
-            {
-                string blad = "Brak połączenia z serwerem! kod: " + response.StatusCode;
-                var toast = Toast.MakeText(this, blad, ToastLength.Short);
-                toast.Show();
             }
         }
 

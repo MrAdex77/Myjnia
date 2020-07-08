@@ -4109,6 +4109,9 @@ namespace Myjnia
 		public partial class Id
 		{
 			
+			// aapt resource value: 0x7F080001
+			public const int AccountBalance = 2131230721;
+			
 			// aapt resource value: 0x7F080012
 			public const int action0 = 2131230738;
 			
@@ -4232,8 +4235,8 @@ namespace Myjnia
 			// aapt resource value: 0x7F080039
 			public const int checkbox = 2131230777;
 			
-			// aapt resource value: 0x7F080002
-			public const int ChooseOption = 2131230722;
+			// aapt resource value: 0x7F080003
+			public const int ChooseOption = 2131230723;
 			
 			// aapt resource value: 0x7F08003A
 			public const int chronometer = 2131230778;
@@ -4265,8 +4268,8 @@ namespace Myjnia
 			// aapt resource value: 0x7F080043
 			public const int coordinator = 2131230787;
 			
-			// aapt resource value: 0x7F080001
-			public const int CTRL = 2131230721;
+			// aapt resource value: 0x7F080002
+			public const int CTRL = 2131230722;
 			
 			// aapt resource value: 0x7F080044
 			public const int custom = 2131230788;
@@ -4352,8 +4355,8 @@ namespace Myjnia
 			// aapt resource value: 0x7F08005F
 			public const int forever = 2131230815;
 			
-			// aapt resource value: 0x7F080003
-			public const int FUNCTION = 2131230723;
+			// aapt resource value: 0x7F080004
+			public const int FUNCTION = 2131230724;
 			
 			// aapt resource value: 0x7F080060
 			public const int ghost_view = 2131230816;
@@ -4388,8 +4391,8 @@ namespace Myjnia
 			// aapt resource value: 0x7F08006A
 			public const int item_touch_helper_previous_elevation = 2131230826;
 			
-			// aapt resource value: 0x7F080004
-			public const int KontoLayout = 2131230724;
+			// aapt resource value: 0x7F080005
+			public const int KontoLayout = 2131230725;
 			
 			// aapt resource value: 0x7F08006B
 			public const int labeled = 2131230827;
@@ -4412,8 +4415,8 @@ namespace Myjnia
 			// aapt resource value: 0x7F080071
 			public const int list_item = 2131230833;
 			
-			// aapt resource value: 0x7F080005
-			public const int LoginButton = 2131230725;
+			// aapt resource value: 0x7F080006
+			public const int LoginButton = 2131230726;
 			
 			// aapt resource value: 0x7F080072
 			public const int masked = 2131230834;
@@ -4424,8 +4427,8 @@ namespace Myjnia
 			// aapt resource value: 0x7F080074
 			public const int message = 2131230836;
 			
-			// aapt resource value: 0x7F080006
-			public const int META = 2131230726;
+			// aapt resource value: 0x7F080007
+			public const int META = 2131230727;
 			
 			// aapt resource value: 0x7F080075
 			public const int middle = 2131230837;
@@ -4580,14 +4583,14 @@ namespace Myjnia
 			// aapt resource value: 0x7F0800A7
 			public const int multiply = 2131230887;
 			
-			// aapt resource value: 0x7F080007
-			public const int MyjniaOpcjaEkspert = 2131230727;
-			
 			// aapt resource value: 0x7F080008
-			public const int MyjniaOpcjaPremium = 2131230728;
+			public const int MyjniaOpcjaEkspert = 2131230728;
 			
 			// aapt resource value: 0x7F080009
-			public const int MyjniaOpcjaSzybkie = 2131230729;
+			public const int MyjniaOpcjaPremium = 2131230729;
+			
+			// aapt resource value: 0x7F08000A
+			public const int MyjniaOpcjaSzybkie = 2131230730;
 			
 			// aapt resource value: 0x7F0800A8
 			public const int navigation_header_container = 2131230888;
@@ -4655,8 +4658,8 @@ namespace Myjnia
 			// aapt resource value: 0x7F0800BD
 			public const int radio = 2131230909;
 			
-			// aapt resource value: 0x7F08000A
-			public const int RegisterButton = 2131230730;
+			// aapt resource value: 0x7F08000B
+			public const int RegisterButton = 2131230731;
 			
 			// aapt resource value: 0x7F0800BE
 			public const int right = 2131230910;
@@ -4730,8 +4733,8 @@ namespace Myjnia
 			// aapt resource value: 0x7F0800D4
 			public const int select_dialog_listview = 2131230932;
 			
-			// aapt resource value: 0x7F08000B
-			public const int SHIFT = 2131230731;
+			// aapt resource value: 0x7F08000C
+			public const int SHIFT = 2131230732;
 			
 			// aapt resource value: 0x7F0800D6
 			public const int shortcut = 2131230934;
@@ -4775,8 +4778,8 @@ namespace Myjnia
 			// aapt resource value: 0x7F0800E3
 			public const int src_over = 2131230947;
 			
-			// aapt resource value: 0x7F08000D
-			public const int StanMaszynLayout = 2131230733;
+			// aapt resource value: 0x7F08000E
+			public const int StanMaszynLayout = 2131230734;
 			
 			// aapt resource value: 0x7F0800E4
 			public const int start = 2131230948;
@@ -4793,8 +4796,8 @@ namespace Myjnia
 			// aapt resource value: 0x7F0800E8
 			public const int submit_area = 2131230952;
 			
-			// aapt resource value: 0x7F08000C
-			public const int SYM = 2131230732;
+			// aapt resource value: 0x7F08000D
+			public const int SYM = 2131230733;
 			
 			// aapt resource value: 0x7F0800E9
 			public const int tabMode = 2131230953;
@@ -4886,11 +4889,11 @@ namespace Myjnia
 			// aapt resource value: 0x7F080106
 			public const int useLogo = 2131230982;
 			
-			// aapt resource value: 0x7F08000E
-			public const int UserHomeImageView = 2131230734;
-			
 			// aapt resource value: 0x7F08000F
-			public const int UstawieniaLayout = 2131230735;
+			public const int UserHomeImageView = 2131230735;
+			
+			// aapt resource value: 0x7F080010
+			public const int UstawieniaLayout = 2131230736;
 			
 			// aapt resource value: 0x7F080107
 			public const int view_offset_helper = 2131230983;
@@ -4901,11 +4904,8 @@ namespace Myjnia
 			// aapt resource value: 0x7F080109
 			public const int volume_item_container = 2131230985;
 			
-			// aapt resource value: 0x7F080010
-			public const int WelcomeMessage = 2131230736;
-			
 			// aapt resource value: 0x7F080011
-			public const int WelcomeMessage2 = 2131230737;
+			public const int WelcomeMessage = 2131230737;
 			
 			// aapt resource value: 0x7F08010A
 			public const int withText = 2131230986;

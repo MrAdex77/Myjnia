@@ -38,7 +38,7 @@
         android:layout_toRightOf="@+id/UserHomeImageView"/>
 
         <TextView
-        android:id="@+id/WelcomeMessage2"
+        android:id="@+id/AccountBalance"
         android:layout_marginLeft="10dp"
         android:textSize="16dp"
         android:text="Saldo: 50 zl"

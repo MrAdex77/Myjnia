@@ -7,8 +7,10 @@ using Android.App;
 using Android.Content;
 using Android.OS;
 using Android.Runtime;
+using Android.Util;
 using Android.Views;
 using Android.Widget;
+using Xamarin.Essentials;
 
 namespace Myjnia
 {
@@ -22,6 +24,7 @@ namespace Myjnia
         private LinearLayout KontoLayout;
         private LinearLayout UstawieniaLayout;
         private TextView welcomeMessage;
+        private TextView accountBalance;
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
@@ -35,11 +38,27 @@ namespace Myjnia
             KontoLayout = (LinearLayout)FindViewById(Resource.Id.KontoLayout);
             UstawieniaLayout = (LinearLayout)FindViewById(Resource.Id.UstawieniaLayout);
             welcomeMessage = (TextView)FindViewById(Resource.Id.WelcomeMessage);
+            accountBalance = (TextView)FindViewById(Resource.Id.AccountBalance);
             //Click event handlers
             qrcodeLayout.Click += QrcodeLayout_Click;
 
             //
-            welcomeMessage.Text = "Witaj, " + Intent.GetStringExtra("email") + "!";
+            Profil();
+        }
+
+        private async void Profil()
+        {
+            try
+            {
+                var balans = await SecureStorage.GetAsync("balans");
+                welcomeMessage.Text = "Witaj, " + Intent.GetStringExtra("email") + "!";
+                accountBalance.Text = "Saldo: " + balans + " zł";
+            }
+            catch (Exception ex)
+            {
+                Toast.MakeText(this, "Twoj telefon nie obsluguje SecureStorage!", ToastLength.Short).Show();
+                Log.Info("blad", ex.ToString());
+            }
         }
 
         private void QrcodeLayout_Click(object sender, EventArgs e)

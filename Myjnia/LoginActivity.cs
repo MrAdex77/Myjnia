@@ -117,9 +117,11 @@ namespace Myjnia
                         //token
                         var resultObject = JObject.Parse(result);
                         string token = resultObject["token"].ToString();
+                        string balans = resultObject["balance"].ToString();
                         try
                         {
                             await SecureStorage.SetAsync("oauth_token", token);
+                            await SecureStorage.SetAsync("balans", balans);
                         }
                         catch (Exception ex)
                         {
