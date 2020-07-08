@@ -41,9 +41,29 @@ namespace Myjnia
             accountBalance = (TextView)FindViewById(Resource.Id.AccountBalance);
             //Click event handlers
             qrcodeLayout.Click += QrcodeLayout_Click;
+            StanMaszynLayout.Click += StanMaszynLayout_Click;
+            KontoLayout.Click += KontoLayout_Click;
+            UstawieniaLayout.Click += UstawieniaLayout_Click;
 
             //
             Profil();
+        }
+
+        private void UstawieniaLayout_Click(object sender, EventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
+        private void KontoLayout_Click(object sender, EventArgs e)
+        {
+            Intent intent = new Intent(this, typeof(ProfileActivity));
+            //intent.PutExtra("topic", "Business");
+            StartActivity(intent);
+        }
+
+        private void StanMaszynLayout_Click(object sender, EventArgs e)
+        {
+            throw new NotImplementedException();
         }
 
         private async void Profil()

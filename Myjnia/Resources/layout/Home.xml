@@ -21,11 +21,12 @@
         android:layout_height="wrap_content"
         android:padding="10dp">
     
-    <ImageView
+        <ImageView
         android:id="@+id/UserHomeImageView"
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:layout_centerVertical="true"
+        android:contentDescription="AccountImage"
         android:src="@drawable/account"/>
         <TextView
         android:id="@+id/WelcomeMessage"
@@ -46,6 +47,7 @@
         android:layout_height="wrap_content"
         android:layout_toRightOf="@+id/UserHomeImageView"
         android:layout_below="@+id/WelcomeMessage"/>
+ 
     </RelativeLayout>
 
 

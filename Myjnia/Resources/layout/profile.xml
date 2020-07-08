@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+      <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp">
+
+        <ImageView
+        android:id="@+id/UserProfileImageView"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_centerVertical="true"
+        android:contentDescription="AccountImage"
+        android:src="@drawable/account"/>
+        <TextView
+        android:id="@+id/ProfileWelcomeMessage"
+        android:layout_marginLeft="10dp"
+        android:textSize="18dp"
+        android:textStyle="bold"
+        android:text="Witaj, email"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/UserProfileImageView"/>
+
+        <TextView
+        android:id="@+id/AccountProfileBalance"
+        android:layout_marginLeft="10dp"
+        android:textSize="16dp"
+        android:text="Saldo: 50 zl"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/UserProfileImageView"
+        android:layout_below="@+id/ProfileWelcomeMessage"/>
+ 
+       </RelativeLayout>
+        <LinearLayout
+            android:layout_weight="0.6"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="0dp">
+    
+        <Button
+        android:id="@+id/ProfileChangePassword"
+        android:layout_gravity="center"
+        android:layout_marginTop="10dp"
+        android:text="Zmien Haslo"
+        android:background="@drawable/roundbutton"
+        android:textColor="@color/colorPrimary"
+        android:textAllCaps="false"
+        android:layout_width="300dp"
+        android:layout_height="45dp"/>
+        <Button
+        android:id="@+id/ProfileAddMoney"
+        android:layout_gravity="center"
+        android:layout_marginTop="10dp"
+        android:text="Doladuj Konto"
+        android:background="@drawable/roundbutton"
+        android:textColor="@color/colorPrimary"
+        android:textAllCaps="false"
+        android:layout_width="300dp"
+        android:layout_height="45dp"/>
+        <Button
+        android:id="@+id/ProfileDeleteAccount"
+        android:layout_gravity="center"
+        android:layout_marginTop="10dp"
+        android:text="Usun Konto"
+        android:background="@drawable/roundbutton"
+        android:textColor="@color/colorPrimary"
+        android:textAllCaps="false"
+        android:layout_width="300dp"
+        android:layout_height="45dp"/>
+        <Button
+        android:id="@+id/ProfileLogout"
+        android:layout_gravity="center"
+        android:layout_marginTop="10dp"
+        android:text="Wyloguj"
+        android:background="@drawable/roundbutton"
+        android:textColor="@color/colorPrimary"
+        android:textAllCaps="false"
+        android:layout_width="300dp"
+        android:layout_height="45dp"/>
+    
+    </LinearLayout>
+
+</LinearLayout>

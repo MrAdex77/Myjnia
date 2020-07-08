@@ -22,7 +22,7 @@ using Xamarin.Essentials;
 namespace Myjnia
 {
     [Activity(Label = "LoginActivity")]
-    public class LoginActivity : AppCompatActivity
+    public class LoginActivity : Activity
     {
         private EditText Email;
         private EditText Password;

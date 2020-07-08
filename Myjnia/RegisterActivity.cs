@@ -20,7 +20,7 @@ using Newtonsoft.Json;
 namespace Myjnia
 {
     [Activity(Label = "RegisterActivity")]
-    public class RegisterActivity : AppCompatActivity
+    public class RegisterActivity : Activity
     {
         private EditText Email;
         private EditText Password;
