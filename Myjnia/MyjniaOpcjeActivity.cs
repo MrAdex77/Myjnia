@@ -24,6 +24,7 @@ namespace Myjnia
         private Button btSzybkie;
         private Button btEkspert;
         private Button btPremium;
+        private Button btZakoncz;
         private TextView licznik;
         private DateTime dateTime;
         private int timerCounter = 0;
@@ -37,10 +38,12 @@ namespace Myjnia
             btSzybkie = FindViewById<Button>(Resource.Id.MyjniaOpcjaSzybkie);
             btEkspert = FindViewById<Button>(Resource.Id.MyjniaOpcjaEkspert);
             btPremium = FindViewById<Button>(Resource.Id.MyjniaOpcjaPremium);
+            btZakoncz = FindViewById<Button>(Resource.Id.MyjniaOpcjaZakoncz);
             licznik = FindViewById<TextView>(Resource.Id.timeCounterTextView);
             btSzybkie.Click += BtSzybkie_Click;
             btEkspert.Click += BtEkspert_Click;
             btPremium.Click += BtPremium_Click;
+            btZakoncz.Click += BtZakoncz_Click;
             //variables
 
             countDown.Interval = 1000;
@@ -48,9 +51,14 @@ namespace Myjnia
             countDown.Enabled = false;
         }
 
+        private void BtZakoncz_Click(object sender, EventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
         private void CountDown_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
         {
-            timerCounter++;
+            timerCounter--;
 
             DateTime dt = new DateTime();
             dt = dateTime.AddSeconds(-1);
@@ -63,9 +71,10 @@ namespace Myjnia
             });
 
             //Ended
-            if (timerCounter == 120)
+            if (timerCounter == 0)
             {
                 countDown.Enabled = false;
+                Toast.MakeText(this, "Czas sie skonczyl!", ToastLength.Short);
             }
         }
 
@@ -120,7 +129,7 @@ namespace Myjnia
             };
             string jsonData = JsonConvert.SerializeObject(user, settings);
             StringContent Content = new StringContent(jsonData, Encoding.UTF8, "application/json");
-            var url = "http://192.168.43.2:5000/machine/startMachine";
+            var url = "http://80.211.242.184/machine/startMachine";
             var response = await client.PostAsync(url, Content);
             if (response.IsSuccessStatusCode)
             {
@@ -129,7 +138,7 @@ namespace Myjnia
                 var resultObject = JObject.Parse(result);
                 string czas = resultObject["time"].ToString();
                 string balans = resultObject["balance"].ToString();
-                Toast.MakeText(this, czas, ToastLength.Short).Show();
+                timerCounter = Convert.ToInt32(czas);
                 StartCzas(Convert.ToDouble(czas));
                 try
                 {

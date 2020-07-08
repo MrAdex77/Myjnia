@@ -50,7 +50,7 @@
     <EditText
         android:id="@+id/passwordLoginText"
         android:textSize="18sp"
-        android:hint="Password"
+        android:hint="Hasło"
         android:inputType="textPassword"
         android:imeOptions="actionDone"
         android:layout_width="match_parent"
@@ -61,7 +61,7 @@
         android:id="@+id/LoginButton"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="60dp"
-        android:text="Login"
+        android:text="Zaloguj się"
         android:background="@drawable/roundbutton"
         android:textColor="@color/colorPrimary"
         android:textAllCaps="false"
@@ -76,7 +76,7 @@
         android:gravity="center"
         android:textColor="@color/colorPrimary"
         android:textStyle="bold"
-        android:text="Click here to Sign Up"
+        android:text="Zarejestruj się"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
 

@@ -16,6 +16,7 @@ using Android.Views;
 using Android.Widget;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using Plugin.Connectivity;
 using Xamarin.Essentials;
 
 namespace Myjnia
@@ -72,6 +73,12 @@ namespace Myjnia
         {
             try
             {
+                if (!CrossConnectivity.Current.IsConnected)
+                {
+                    Toast.MakeText(this, "Brak internetu!", ToastLength.Short).Show();
+                    return;
+                }
+
                 using var client = new HttpClient();
 
                 var settings = new JsonSerializerSettings
@@ -86,17 +93,8 @@ namespace Myjnia
                 };
                 string jsonData = JsonConvert.SerializeObject(user, settings);
                 StringContent Content = new StringContent(jsonData, Encoding.UTF8, "application/json");
-                var url = "http://192.168.43.2:5000/auth/login";
+                var url = "http://80.211.242.184/auth/login";
                 var response = await client.PostAsync(url, Content);
-
-                //handling answer
-                string result = await response.Content.ReadAsStringAsync();
-                //var re = response.StatusCode.ToString();
-                // testowekonto@gmail.com Adex123@
-                //Toast.MakeText(this, re, ToastLength.Short).Show();
-
-                //obsługa tokenu
-                //Toast.MakeText(this, re, ToastLength.Short).Show();
 
                 switch (response.StatusCode)
                 {
@@ -114,7 +112,9 @@ namespace Myjnia
                         break;
 
                     case HttpStatusCode.OK:
-                        //token
+                        Toast.MakeText(this, "Zalogowano!", ToastLength.Short).Show();
+                        //handling answer
+                        string result = await response.Content.ReadAsStringAsync();
                         var resultObject = JObject.Parse(result);
                         string token = resultObject["token"].ToString();
                         string balans = resultObject["balance"].ToString();
@@ -128,7 +128,6 @@ namespace Myjnia
                             Toast.MakeText(this, "Twoj telefon nie obsluguje SecureStorage!", ToastLength.Short).Show();
                             Log.Info("blad", ex.ToString());
                         }
-                        Toast.MakeText(this, "Zalogowano!", ToastLength.Short).Show();
                         Intent intent = new Intent(this, typeof(HomeActivity));
                         intent.PutExtra("email", user.email);
                         StartActivity(intent);

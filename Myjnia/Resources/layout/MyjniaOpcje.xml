@@ -17,7 +17,7 @@
          android:gravity="center"
          android:textSize="28sp"
          android:textStyle="bold"
-         android:text="01:33"
+         android:text="01:00"
          />
 
 
@@ -66,6 +66,17 @@
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="10dp"
         android:text="Premium"
+        android:background="@drawable/roundbutton"
+        android:textColor="@color/colorPrimary"
+        android:textAllCaps="false"
+        android:layout_width="300dp"
+        android:layout_height="45dp"/>
+
+        <Button
+        android:id="@+id/MyjniaOpcjaZakoncz"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="50dp"
+        android:text="Zakończ"
         android:background="@drawable/roundbutton"
         android:textColor="@color/colorPrimary"
         android:textAllCaps="false"

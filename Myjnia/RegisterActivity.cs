@@ -82,8 +82,7 @@ namespace Myjnia
                 string jsonData = JsonConvert.SerializeObject(user, settings);
                 StringContent Content = new StringContent(jsonData, Encoding.UTF8, "application/json");
                 //lokalne
-                var url = "http://192.168.43.2:5000/auth/register";
-                // publiczne var url = "http://80.211.242.184/auth/register";
+                var url = "http://80.211.242.184/auth/register";
                 var response = await client.PostAsync(url, Content);
                 switch (response.StatusCode)
                 {
@@ -109,6 +108,7 @@ namespace Myjnia
             }
             catch (IOException e)
             {
+                Toast.MakeText(this, e.ToString(), ToastLength.Long).Show();
                 Log.Info("blad", e.ToString());
             }
         }
