@@ -51,31 +51,31 @@ namespace Myjnia
             countDown.Enabled = false;
         }
 
-        private void BtZakoncz_Click(object sender, EventArgs e)
+        private async void BtZakoncz_Click(object sender, EventArgs e)
         {
-            throw new NotImplementedException();
+            await Send();
+            countDown.Enabled = false;
         }
 
         private void CountDown_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
         {
-            timerCounter--;
-
             DateTime dt = new DateTime();
             dt = dateTime.AddSeconds(-1);
             var dateDifference = dateTime.Subtract(dt);
             dateTime -= dateDifference;
 
-            RunOnUiThread(() =>
-            {
-                licznik.Text = dateTime.ToString("mm:ss");
-            });
-
+            timerCounter--;
             //Ended
-            if (timerCounter == 0)
-            {
-                countDown.Enabled = false;
-                Toast.MakeText(this, "Czas sie skonczyl!", ToastLength.Short);
-            }
+            RunOnUiThread(async () =>
+           {
+               licznik.Text = dateTime.ToString("mm:ss");
+               if (timerCounter == 0)
+               {
+                   Toast.MakeText(this, "Czas sie skonczyl!", ToastLength.Short).Show();
+                   countDown.Enabled = false;
+                   await Send();
+               }
+           });
         }
 
         private void StartCzas(double ile)
@@ -104,57 +104,116 @@ namespace Myjnia
 
         private async Task Send(string opcja)
         {
-            string oauthToken = string.Empty;
-            string qrcode = Intent.GetStringExtra("qrcode");
             try
             {
-                oauthToken = await SecureStorage.GetAsync("oauth_token");
-            }
-            catch (Exception ex)
-            {
-                Toast.MakeText(this, "Twoj telefon nie obsluguje SecureStorage!", ToastLength.Short);
-                Log.Info("blad", ex.ToString());
-            }
-            using var client = new HttpClient();
-            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", oauthToken);
-            User user = new User
-            {
-                option = opcja,
-                qrCode = qrcode
-            };
-            var settings = new JsonSerializerSettings
-            {
-                NullValueHandling = NullValueHandling.Ignore,
-                MissingMemberHandling = MissingMemberHandling.Ignore
-            };
-            string jsonData = JsonConvert.SerializeObject(user, settings);
-            StringContent Content = new StringContent(jsonData, Encoding.UTF8, "application/json");
-            var url = "http://80.211.242.184/machine/startMachine";
-            var response = await client.PostAsync(url, Content);
-            if (response.IsSuccessStatusCode)
-            {
-                Toast.MakeText(this, "Czas sie odlicza myj auto!", ToastLength.Short).Show();
-                string result = await response.Content.ReadAsStringAsync();
-                var resultObject = JObject.Parse(result);
-                string czas = resultObject["time"].ToString();
-                string balans = resultObject["balance"].ToString();
-                timerCounter = Convert.ToInt32(czas);
-                StartCzas(Convert.ToDouble(czas));
+                var url = "http://80.211.242.184/machine/startMachine";
+                string oauthToken = string.Empty;
+                string qrcode = Intent.GetStringExtra("qrcode");
                 try
                 {
-                    await SecureStorage.SetAsync("balans", balans);
+                    oauthToken = await SecureStorage.GetAsync("oauth_token");
                 }
                 catch (Exception ex)
                 {
                     Toast.MakeText(this, "Twoj telefon nie obsluguje SecureStorage!", ToastLength.Short);
                     Log.Info("blad", ex.ToString());
                 }
+                using var client = new HttpClient();
+                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", oauthToken);
+                User user = new User
+                {
+                    option = opcja,
+                    qrCode = qrcode
+                };
+                var settings = new JsonSerializerSettings
+                {
+                    NullValueHandling = NullValueHandling.Ignore,
+                    MissingMemberHandling = MissingMemberHandling.Ignore
+                };
+                string jsonData = JsonConvert.SerializeObject(user, settings);
+                StringContent Content = new StringContent(jsonData, Encoding.UTF8, "application/json");
+
+                var response = await client.PostAsync(url, Content);
+                if (response.IsSuccessStatusCode)
+                {
+                    string result = await response.Content.ReadAsStringAsync();
+                    var resultObject = JObject.Parse(result);
+                    string czas = resultObject["time"].ToString();
+                    string balans = resultObject["balance"].ToString();
+                    timerCounter = Convert.ToInt32(czas) * 60;
+                    StartCzas(Convert.ToDouble(czas));
+                    try
+                    {
+                        await SecureStorage.SetAsync("balans", balans);
+                    }
+                    catch (Exception ex)
+                    {
+                        Toast.MakeText(this, "Twoj telefon nie obsluguje SecureStorage!", ToastLength.Short);
+                        Log.Info("blad", ex.ToString());
+                    }
+                }
+                else
+                {
+                    string blad = "Brak połączenia z serwerem! kod: " + response.StatusCode;
+                    var toast = Toast.MakeText(this, blad, ToastLength.Short);
+                    toast.Show();
+                }
             }
-            else
+            catch (Exception ex)
             {
-                string blad = "Brak połączenia z serwerem! kod: " + response.StatusCode;
-                var toast = Toast.MakeText(this, blad, ToastLength.Short);
-                toast.Show();
+                Toast.MakeText(this, ex.ToString(), ToastLength.Short);
+                Log.Info("blad", ex.ToString());
+            }
+        }
+
+        private async Task Send()
+        {
+            //metoda wysla do serwra zapytanie konczoce i zwolniajce myjnie
+            try
+            {
+                var url = "http://80.211.242.184/machine/stopMachine";
+                string oauthToken = string.Empty;
+                string qrcode = Intent.GetStringExtra("qrcode");
+                try
+                {
+                    oauthToken = await SecureStorage.GetAsync("oauth_token");
+                }
+                catch (Exception ex)
+                {
+                    Toast.MakeText(this, "Twoj telefon nie obsluguje SecureStorage!", ToastLength.Short);
+                    Log.Info("blad", ex.ToString());
+                }
+                using var client = new HttpClient();
+                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", oauthToken);
+                User user = new User
+                {
+                    qrCode = qrcode
+                };
+                var settings = new JsonSerializerSettings
+                {
+                    NullValueHandling = NullValueHandling.Ignore,
+                    MissingMemberHandling = MissingMemberHandling.Ignore
+                };
+                string jsonData = JsonConvert.SerializeObject(user, settings);
+                StringContent Content = new StringContent(jsonData, Encoding.UTF8, "application/json");
+
+                var response = await client.PostAsync(url, Content);
+                if (response.IsSuccessStatusCode)
+                {
+                    string result = await response.Content.ReadAsStringAsync();
+                    Toast.MakeText(this, "Zwolniono myjnie!", ToastLength.Short);
+                }
+                else
+                {
+                    string blad = "Brak połączenia z serwerem! kod: " + response.StatusCode;
+                    var toast = Toast.MakeText(this, blad, ToastLength.Short);
+                    toast.Show();
+                }
+            }
+            catch (Exception ex)
+            {
+                Toast.MakeText(this, ex.ToString(), ToastLength.Short);
+                Log.Info("blad", ex.ToString());
             }
         }
     }
