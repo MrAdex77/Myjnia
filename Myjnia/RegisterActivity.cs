@@ -50,15 +50,20 @@ namespace Myjnia
             }
         }
 
+        public bool isValidEmail(string email)
+        {
+            return Android.Util.Patterns.EmailAddress.Matcher(email).Matches();
+        }
+
         private bool Walidacja()
         {
-            if (!String.IsNullOrEmpty(Email.Text) && !String.IsNullOrEmpty(Password.Text) && !String.IsNullOrEmpty(PasswordConfirm.Text))
+            if (!String.IsNullOrEmpty(Email.Text) && !String.IsNullOrEmpty(Password.Text) && !String.IsNullOrEmpty(PasswordConfirm.Text) && isValidEmail(Email.Text))
             {
                 return true;
             }
             else
             {
-                Toast.MakeText(this, "Email lub Haslo jest puste!", ToastLength.Short).Show();
+                Toast.MakeText(this, "Email lub Haslo jest nieprawidlowe!", ToastLength.Short).Show();
                 return false;
             }
         }
@@ -92,6 +97,10 @@ namespace Myjnia
 
                     case HttpStatusCode.Unauthorized:
                         Toast.MakeText(this, "Nie uwierzytelniono!", ToastLength.Short).Show();
+                        break;
+
+                    case HttpStatusCode.NotFound:
+                        Toast.MakeText(this, "Nie znaleziono strony!", ToastLength.Short).Show();
                         break;
 
                     case HttpStatusCode.InternalServerError:

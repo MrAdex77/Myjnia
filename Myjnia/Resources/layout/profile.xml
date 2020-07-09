@@ -17,6 +17,7 @@
         android:src="@drawable/account"/>
         <TextView
         android:id="@+id/ProfileWelcomeMessage"
+        android:layout_marginTop="10dp"
         android:layout_marginLeft="10dp"
         android:textSize="18dp"
         android:textStyle="bold"
@@ -57,16 +58,6 @@
         android:layout_gravity="center"
         android:layout_marginTop="10dp"
         android:text="Doladuj Konto"
-        android:background="@drawable/roundbutton"
-        android:textColor="@color/colorPrimary"
-        android:textAllCaps="false"
-        android:layout_width="300dp"
-        android:layout_height="45dp"/>
-        <Button
-        android:id="@+id/ProfileDeleteAccount"
-        android:layout_gravity="center"
-        android:layout_marginTop="10dp"
-        android:text="Usun Konto"
         android:background="@drawable/roundbutton"
         android:textColor="@color/colorPrimary"
         android:textAllCaps="false"

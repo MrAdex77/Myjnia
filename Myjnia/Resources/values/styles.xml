@@ -16,11 +16,10 @@
     <item name="android:layout_height">wrap_content</item>
     <item name="android:textColor">@color/textColor</item>
   </style>
-  <!--
+
   <style name="Mytheme.Splash" parent="Theme.AppCompat.Light.NoActionBar">
     <item name="android:windowBackground">@drawable/splash</item>
     <item name="android:windowNoTitle">true</item>
     <item name="android:windowFullscreen">true</item>
   </style>
-  -->
 </resources>

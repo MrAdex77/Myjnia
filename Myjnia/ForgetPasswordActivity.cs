@@ -95,6 +95,10 @@ namespace Myjnia
                         Toast.MakeText(this, "Nie uwierzytelniono!", ToastLength.Short).Show();
                         break;
 
+                    case HttpStatusCode.NotFound:
+                        Toast.MakeText(this, "Nie znaleziono strony!", ToastLength.Short).Show();
+                        break;
+
                     case HttpStatusCode.InternalServerError:
                         string blad = "Brak połączenia z serwerem! kod: " + response.StatusCode;
                         Toast.MakeText(this, blad, ToastLength.Short).Show();
@@ -102,7 +106,7 @@ namespace Myjnia
 
                     case HttpStatusCode.OK:
                         Toast.MakeText(this, "Wysłano przypomnienie, sprawdź pocztę!", ToastLength.Short).Show();
-                        //handling answer
+                        //handling answers
                         Intent intent = new Intent(this, typeof(LoginActivity));
                         StartActivity(intent);
                         break;
