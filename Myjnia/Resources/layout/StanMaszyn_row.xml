@@ -39,7 +39,7 @@
                 android:id="@+id/ErrorDescriptionTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Aktualnie dostêpna"
+                android:text="Aktualnie dostepna"
                 android:layout_toRightOf="@+id/MachineImageView"
                 android:layout_below="@+id/MachineNameTextView"
                 android:layout_marginLeft="10dp" />
