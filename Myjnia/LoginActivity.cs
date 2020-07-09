@@ -38,8 +38,16 @@ namespace Myjnia
             Password = FindViewById<EditText>(Resource.Id.passwordLoginText);
             Button loginButton = FindViewById<Button>(Resource.Id.LoginButton);
             TextView clicktoregister = FindViewById<TextView>(Resource.Id.clickToRegister);
+            TextView forgetpassword = FindViewById<TextView>(Resource.Id.ForgetPassword);
             loginButton.Click += LoginButton_Click;
             clicktoregister.Click += Clicktoregister_Click;
+            forgetpassword.Click += Forgetpassword_Click;
+        }
+
+        private void Forgetpassword_Click(object sender, EventArgs e)
+        {
+            Intent intent = new Intent(this, typeof(ForgetPasswordActivity));
+            StartActivity(intent);
         }
 
         private void Clicktoregister_Click(object sender, EventArgs e)
