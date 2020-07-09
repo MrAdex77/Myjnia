@@ -12,4 +12,12 @@
   <color name="lightash">#e2e2e2</color>
   <color name="green">#6DB460</color>
   <color name="darkgreen">#288218</color>
+
+  <!-- Dark Layout-->
+  <color name="granat1">#212529</color>
+  <color name="granat2">#302f33</color>
+  <color name="zolty">#f4bc09</color>
+  <color name="gold">#FFD700</color>
+  <color name="granat3">#2a2e32</color>
+  <color name="czarny1">#2C3034</color>
 </resources>

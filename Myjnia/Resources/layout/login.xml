@@ -1,7 +1,6 @@
-
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
-    android:background="@android:color/white"
+    android:background="@color/granat1"
     android:padding="16dp"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
@@ -30,10 +29,12 @@
         android:id="@+id/emailLoginTextInputLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:textColorHint="@color/textColor"
         >
     <EditText
         android:id="@+id/emailLoginText"
         android:textSize="18sp"
+        android:textColor="@color/white"
         android:hint="Email"
         android:inputType="textEmailAddress"
         android:imeOptions="actionNext"
@@ -46,9 +47,11 @@
         android:id="@+id/passwordLoginTextInputLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:textColorHint="@color/textColor"
         >
     <EditText
         android:id="@+id/passwordLoginText"
+        android:textColor="@color/white"
         android:textSize="18sp"
         android:hint="Hasło"
         android:inputType="textPassword"
@@ -59,11 +62,10 @@
         
         <TextView
         android:id="@+id/ForgetPassword"
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="10dp"
         android:textSize="16sp"
         android:gravity="right"
-        android:textColor="@color/colorPrimary"
-        android:textStyle="bold"
+        android:textColor="@color/textColor"
         android:text="Zapomniales hasla?"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
@@ -74,7 +76,7 @@
         android:layout_marginTop="60dp"
         android:text="Zaloguj się"
         android:background="@drawable/roundbutton"
-        android:textColor="@color/colorPrimary"
+        android:textColor="@color/czarny1"
         android:textAllCaps="false"
         android:layout_width="300dp"
         android:layout_height="45dp"/>
@@ -85,7 +87,7 @@
         android:layout_marginTop="40dp"
         android:textSize="16sp"
         android:gravity="center"
-        android:textColor="@color/colorPrimary"
+        android:textColor="@color/textColor"
         android:textStyle="bold"
         android:text="Nie masz konta? Zarejestruj się"
         android:layout_width="match_parent"

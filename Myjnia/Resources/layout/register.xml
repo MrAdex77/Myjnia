@@ -1,7 +1,7 @@
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
-    android:background="@android:color/white"
+    android:background="@color/granat1"
     android:padding="16dp"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
@@ -30,11 +30,13 @@
         android:id="@+id/emailRegisterTextInputLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:textColorHint="@color/textColor"
         >
     <EditText
         android:id="@+id/emailRegisterText"
         android:textSize="18sp"
         android:hint="Email"
+        android:textColor="@color/white"
         android:inputType="textEmailAddress"
         android:imeOptions="actionNext"
         android:layout_width="match_parent"
@@ -46,11 +48,13 @@
         android:id="@+id/passwordRegisterTextInputLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:textColorHint="@color/textColor"
         >
     <EditText
         android:id="@+id/passwordRegisterText"
         android:textSize="18sp"
         android:hint="Haslo"
+        android:textColor="@color/white"
         android:inputType="textPassword"
         android:imeOptions="actionNext"
         android:layout_width="match_parent"
@@ -62,11 +66,13 @@
         android:id="@+id/passwordconfirmRegisterTextInputLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:textColorHint="@color/textColor"
         >
     <EditText
         android:id="@+id/passwordconfirmRegisterText"
         android:textSize="18sp"
         android:hint="Powtorz Haslo"
+        android:textColor="@color/white"
         android:inputType="textPassword"
         android:imeOptions="actionDone"
         android:layout_width="match_parent"
@@ -78,7 +84,7 @@
         android:layout_marginTop="60dp"
         android:text="Zarejestruj sie"
         android:background="@drawable/roundbutton"
-        android:textColor="@color/colorPrimary"
+        android:textColor="@color/czarny1"
         android:textAllCaps="false"
         android:layout_width="300dp"
         android:layout_height="45dp"/>

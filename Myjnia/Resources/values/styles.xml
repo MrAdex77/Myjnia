@@ -3,9 +3,14 @@
   <!-- Base application theme. -->
   <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
     <!-- Customize your theme here. -->
+    <item name="colorPrimary">@color/granat1</item>
+    <item name="colorPrimaryDark">@color/granat1</item>
+    <item name="colorAccent">@color/textColor</item>
+    <!--
     <item name="colorPrimary">@color/colorPrimary</item>
     <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
     <item name="colorAccent">@color/colorAccent</item>
+    -->
   </style>
   <style name="AppTheme.DarkAppBar" parent="ThemeOverlay.AppCompat.Dark" />
 
@@ -14,7 +19,7 @@
     <item name="android:gravity">center</item>
     <item name="android:layout_width">match_parent</item>
     <item name="android:layout_height">wrap_content</item>
-    <item name="android:textColor">@color/textColor</item>
+    <item name="android:textColor">@color/white</item>
   </style>
 
   <style name="Mytheme.Splash" parent="Theme.AppCompat.Light.NoActionBar">
