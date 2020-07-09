@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Android.App;
 using Android.Content;
+using Android.Graphics;
 using Android.OS;
 using Android.Runtime;
 using Android.Util;
@@ -74,6 +75,11 @@ namespace Myjnia
                    Toast.MakeText(this, "Czas sie skonczyl!", ToastLength.Short).Show();
                    countDown.Enabled = false;
                    await Send();
+                   EnableButtons();
+               }
+               if (timerCounter == 10)
+               {
+                   licznik.SetTextColor(Color.ParseColor("red"));
                }
            });
         }
@@ -83,8 +89,22 @@ namespace Myjnia
             dateTime = new DateTime();
             dateTime = dateTime.AddMinutes(ile);
             licznik.Text = dateTime.ToString("mm:ss");
-
             countDown.Enabled = true;
+            DisableButtons();
+        }
+
+        private void EnableButtons()
+        {
+            btSzybkie.Enabled = true;
+            btEkspert.Enabled = true;
+            btPremium.Enabled = true;
+        }
+
+        private void DisableButtons()
+        {
+            btSzybkie.Enabled = false;
+            btEkspert.Enabled = false;
+            btPremium.Enabled = false;
         }
 
         private async void BtPremium_Click(object sender, EventArgs e)
@@ -168,7 +188,7 @@ namespace Myjnia
 
         private async Task Send()
         {
-            //metoda wysla do serwra zapytanie konczoce i zwolniajce myjnie
+            //metoda wysla do serwra zapytanie konczonce i zwolniajce myjnie
             try
             {
                 var url = "http://80.211.242.184/machine/stopMachine";
