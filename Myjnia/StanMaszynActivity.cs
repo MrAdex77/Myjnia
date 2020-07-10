@@ -48,14 +48,8 @@ namespace Myjnia
                 if (response.IsSuccessStatusCode)
                 {
                     var result = await response.Content.ReadAsStringAsync();
-                    //var resultObject = JObject.Parse(result);
-                    //listOfMachines = new List<Status>();
-                    //string jsonList = string.Empty;
-                    //var dList = JsonConvert.DeserializeObject<List<Root>>(result);
                     var des = (Root)JsonConvert.DeserializeObject(result, typeof(Root));
-                    //return des.data.Count.ToString();
-                    //Toast.MakeText(this, des.status.Count.ToString(), ToastLength.Long).Show();
-
+                    listOfMachines = new List<Status>();
                     listOfMachines.AddRange(des.status);
                 }
                 else

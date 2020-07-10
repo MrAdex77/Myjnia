@@ -26,10 +26,7 @@ namespace Myjnia.Adapters
         {
             //Setup your layout here
             View itemView = null;
-            //var id = Resource.Layout.__YOUR_ITEM_HERE;
-            //itemView = LayoutInflater.From(parent.Context).
-            //       Inflate(id, parent, false);
-
+            itemView = LayoutInflater.From(parent.Context).Inflate(Resource.Layout.StanMaszyn_row, parent, false);
             var vh = new MachinesAdapterViewHolder(itemView, OnClick, OnLongClick);
             return vh;
         }
@@ -37,12 +34,19 @@ namespace Myjnia.Adapters
         // Replace the contents of a view (invoked by the layout manager)
         public override void OnBindViewHolder(RecyclerView.ViewHolder viewHolder, int position)
         {
-            var item = Machineslist[position];
+            var machine = Machineslist[position];
 
             // Replace the contents of the view with that element
             var holder = viewHolder as MachinesAdapterViewHolder;
-            holder.MachineNameTextView.Text = status.id.ToString();
-            holder.MachineDescriptionTextView.Text = status.status.ToString();
+            holder.MachineNameTextView.Text = "Maszyna " + machine.id.ToString();
+            if (machine.status == 1)
+            {
+                holder.MachineDescriptionTextView.Text = "Aktualnie niedostępna";
+            }
+            else
+            {
+                holder.MachineDescriptionTextView.Text = "Aktualnie dostępna";
+            }
             //holder.TextView.Text = items[position];
         }
 
