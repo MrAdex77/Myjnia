@@ -26,9 +26,11 @@ namespace Myjnia
         private Button btEkspert;
         private Button btPremium;
         private Button btZakoncz;
+        private TextView MachineName;
         private TextView licznik;
         private DateTime dateTime;
         private int timerCounter = 0;
+        private string qrcode = string.Empty;
         private System.Timers.Timer countDown = new System.Timers.Timer();
 
         protected override void OnCreate(Bundle savedInstanceState)
@@ -40,21 +42,31 @@ namespace Myjnia
             btEkspert = FindViewById<Button>(Resource.Id.MyjniaOpcjaEkspert);
             btPremium = FindViewById<Button>(Resource.Id.MyjniaOpcjaPremium);
             btZakoncz = FindViewById<Button>(Resource.Id.MyjniaOpcjaZakoncz);
+            MachineName = FindViewById<TextView>(Resource.Id.MaszynaNazwaOpcjeTextView);
             licznik = FindViewById<TextView>(Resource.Id.timeCounterTextView);
             btSzybkie.Click += BtSzybkie_Click;
             btEkspert.Click += BtEkspert_Click;
             btPremium.Click += BtPremium_Click;
             btZakoncz.Click += BtZakoncz_Click;
             //variables
+            qrcode = Intent.GetStringExtra("qrcode");
 
             countDown.Interval = 1000;
             countDown.Elapsed += CountDown_Elapsed;
             countDown.Enabled = false;
+
+            CurrentMachine();
+        }
+
+        private void CurrentMachine()
+        {
+            MachineName.Text = qrcode;
         }
 
         private async void BtZakoncz_Click(object sender, EventArgs e)
         {
             await Send();
+            EnableButtons();
             countDown.Enabled = false;
         }
 
@@ -90,6 +102,7 @@ namespace Myjnia
             dateTime = dateTime.AddMinutes(ile);
             licznik.Text = dateTime.ToString("mm:ss");
             countDown.Enabled = true;
+            licznik.SetTextColor(Color.ParseColor("white"));
             DisableButtons();
         }
 
@@ -128,7 +141,6 @@ namespace Myjnia
             {
                 var url = "http://80.211.242.184/machine/startMachine";
                 string oauthToken = string.Empty;
-                string qrcode = Intent.GetStringExtra("qrcode");
                 try
                 {
                     oauthToken = await SecureStorage.GetAsync("oauth_token");
@@ -188,7 +200,7 @@ namespace Myjnia
 
         private async Task Send()
         {
-            //metoda wysla do serwra zapytanie konczonce i zwolniajce myjnie
+            //metoda wysyla do serwera zapytanie konczonce i zwolniajce myjnie
             try
             {
                 var url = "http://80.211.242.184/machine/stopMachine";

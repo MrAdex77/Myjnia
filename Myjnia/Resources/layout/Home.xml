@@ -51,6 +51,12 @@
         android:layout_toRightOf="@+id/UserHomeImageView"
         android:layout_below="@+id/WelcomeMessage"/>
  
+
+         <View
+         android:background="@color/textColor"
+         android:layout_below="@+id/UserHomeImageView"
+         android:layout_width="match_parent"
+         android:layout_height="1dp" />
     </RelativeLayout>
 
 
@@ -87,7 +93,7 @@
                         android:layout_marginTop="5dp"
                         android:layout_marginBottom="5dp"
                         android:layout_gravity="center_horizontal"
-                        android:src="@drawable/qrcode"
+                        android:src="@drawable/qrcode2"
                         android:layout_width="100dp"
                         android:layout_height="100dp">
                     </ImageView>
@@ -122,7 +128,7 @@
                         android:layout_marginTop="5dp"
                         android:layout_marginBottom="5dp"
                         android:layout_gravity="center_horizontal"
-                        android:src="@drawable/qrcode"
+                        android:src="@drawable/status2"
                         android:layout_width="100dp"
                         android:layout_height="100dp">
                     </ImageView>
@@ -161,7 +167,7 @@
                         android:layout_marginTop="5dp"
                         android:layout_marginBottom="5dp"
                         android:layout_gravity="center_horizontal"
-                        android:src="@drawable/qrcode"
+                        android:src="@drawable/account2"
                         android:layout_width="100dp"
                         android:layout_height="100dp">
                     </ImageView>
@@ -197,7 +203,7 @@
                         android:layout_marginTop="5dp"
                         android:layout_marginBottom="5dp"
                         android:layout_gravity="center_horizontal"
-                        android:src="@drawable/qrcode"
+                        android:src="@drawable/settings2"
                         android:layout_width="100dp"
                         android:layout_height="100dp">
                     </ImageView>
