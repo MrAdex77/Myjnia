@@ -50,7 +50,7 @@ namespace Myjnia
             btZakoncz.Click += BtZakoncz_Click;
             //variables
             qrcode = Intent.GetStringExtra("qrcode");
-
+            licznik.Visibility = Android.Views.ViewStates.Invisible;
             countDown.Interval = 1000;
             countDown.Elapsed += CountDown_Elapsed;
             countDown.Enabled = false;
@@ -68,6 +68,7 @@ namespace Myjnia
             await Send();
             EnableButtons();
             countDown.Enabled = false;
+            licznik.Visibility = Android.Views.ViewStates.Invisible;
         }
 
         private void CountDown_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
@@ -88,6 +89,7 @@ namespace Myjnia
                    countDown.Enabled = false;
                    await Send();
                    EnableButtons();
+                   licznik.Visibility = Android.Views.ViewStates.Invisible;
                }
                if (timerCounter == 10)
                {
@@ -98,6 +100,7 @@ namespace Myjnia
 
         private void StartCzas(double ile)
         {
+            licznik.Visibility = Android.Views.ViewStates.Visible;
             dateTime = new DateTime();
             dateTime = dateTime.AddMinutes(ile);
             licznik.Text = dateTime.ToString("mm:ss");

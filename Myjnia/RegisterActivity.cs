@@ -5,6 +5,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using Android.App;
 using Android.Content;
@@ -44,7 +45,7 @@ namespace Myjnia
 
         private async void RegisterButton_Click(object sender, EventArgs e)
         {
-            if (Walidacja())
+            if (Walidacja() && Regex())
             {
                 await Register();
             }
@@ -55,15 +56,54 @@ namespace Myjnia
             return Android.Util.Patterns.EmailAddress.Matcher(email).Matches();
         }
 
-        private bool Walidacja()
+        private bool Regex()
         {
-            if (!String.IsNullOrEmpty(Email.Text) && !String.IsNullOrEmpty(Password.Text) && !String.IsNullOrEmpty(PasswordConfirm.Text) && isValidEmail(Email.Text))
+            Regex rx = new Regex("(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])(?=.{8,})");
+            if (rx.IsMatch(Password.Text))
             {
                 return true;
             }
+            Toast.MakeText(this, "Haslo jest nieprawidlowe!", ToastLength.Short).Show();
+            return false;
+        }
+
+        private bool Walidacja()
+        {
+            if (!String.IsNullOrEmpty(Email.Text) && !String.IsNullOrEmpty(Password.Text) && !String.IsNullOrEmpty(PasswordConfirm.Text))
+            {
+                if (Password.Text.Equals(PasswordConfirm.Text))
+                {
+                    if (isValidEmail(Email.Text))
+                    {
+                        if (Regex())
+                        {
+                            return true;
+                        }
+                        else
+                        {
+                            Password.RequestFocus();
+                            Toast.MakeText(this, "Haslo musi miec przynajmniej jeden znak specjalny,jedna cyfre,jedna duza litere i min 8 znakow dlugosci!", ToastLength.Long).Show();
+                            return false;
+                        }
+                    }
+                    else
+                    {
+                        Email.RequestFocus();
+                        Toast.MakeText(this, "Email jest nieprawidlowy! Przyklad: test@gmail.com", ToastLength.Short).Show();
+                        return false;
+                    }
+                }
+                else
+                {
+                    Password.RequestFocus();
+                    Toast.MakeText(this, "Hasla nie sa takie same!", ToastLength.Short).Show();
+                    return false;
+                }
+            }
             else
             {
-                Toast.MakeText(this, "Email lub Haslo jest nieprawidlowe!", ToastLength.Short).Show();
+                Email.RequestFocus();
+                Toast.MakeText(this, "Email lub Haslo jest puste!", ToastLength.Short).Show();
                 return false;
             }
         }
