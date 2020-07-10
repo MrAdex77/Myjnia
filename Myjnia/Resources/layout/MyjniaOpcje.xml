@@ -9,12 +9,21 @@
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+        <ImageView
+        android:id="@+id/MachineImageOpcjaView"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_gravity="center"
+        android:contentDescription="MachineImage"
+        android:src="@drawable/machine2"/>
             <TextView
             android:id="@+id/MaszynaNazwaOpcjeTextView"
-            android:text="Maszyna nr 1"
+            android:text="Maszyna1"
+            android:layout_marginTop="-40dp"
+            android:layout_marginBottom="10dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="@color/zolty"
+            android:textColor="@color/white"
             android:textSize="20sp"
             android:gravity="center"
             android:textStyle="bold"
@@ -31,8 +40,6 @@
          android:text="01:00"
          />
 
-
-
         <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -47,8 +54,6 @@
             android:textSize="20sp"
             android:gravity="center"
             android:textStyle="bold"
-            android:layout_marginTop="20dp"
-            android:layout_marginBottom="0dp"
             />
 
         <Button
@@ -87,7 +92,7 @@
         <Button
         android:id="@+id/MyjniaOpcjaZakoncz"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="30dp"
         android:text="Zakończ"
         android:background="@drawable/roundbutton"
         android:textColor="@color/czarny1"

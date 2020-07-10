@@ -13,9 +13,11 @@
         android:id="@+id/UserProfileImageView"
         android:layout_width="100dp"
         android:layout_height="100dp"
-        android:layout_centerVertical="true"
+        android:layout_gravity="center"
+        android:layout_centerHorizontal="true"
         android:contentDescription="AccountImage"
         android:src="@drawable/account"/>
+
         <TextView
         android:id="@+id/ProfileWelcomeMessage"
         android:layout_marginTop="10dp"
@@ -24,9 +26,10 @@
         android:textColor="@color/white"
         android:textStyle="bold"
         android:text="Witaj, email"
+        android:layout_centerHorizontal="true"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_toRightOf="@+id/UserProfileImageView"/>
+        android:layout_below="@+id/UserProfileImageView"/>
 
         <TextView
         android:id="@+id/AccountProfileBalance"
@@ -34,9 +37,9 @@
         android:textSize="16dp"
         android:text="Saldo: 50 zl"
         android:textColor="@color/white"
+        android:layout_centerHorizontal="true"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_toRightOf="@+id/UserProfileImageView"
         android:layout_below="@+id/ProfileWelcomeMessage"/>
  
          <View
@@ -44,17 +47,24 @@
          android:layout_below="@+id/UserProfileImageView"
          android:layout_width="match_parent"
          android:layout_height="1dp" />
+
+         <View
+         android:background="@color/textColor"
+         android:layout_below="@+id/AccountProfileBalance"
+         android:layout_marginTop="10dp"
+         android:layout_width="match_parent"
+         android:layout_height="1dp" />
        </RelativeLayout>
         <LinearLayout
             android:layout_weight="0.6"
             android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="0dp">
+            android:layout_height="wrap_content">
     
         <Button
         android:id="@+id/ProfileChangePassword"
         android:layout_gravity="center"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="50dp"
         android:text="Zmien Haslo"
         android:background="@drawable/roundbutton"
         android:textColor="@color/czarny1"
