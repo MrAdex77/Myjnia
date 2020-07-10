@@ -57,13 +57,13 @@ namespace Myjnia
         private void KontoLayout_Click(object sender, EventArgs e)
         {
             Intent intent = new Intent(this, typeof(ProfileActivity));
-            //intent.PutExtra("topic", "Business");
             StartActivity(intent);
         }
 
         private void StanMaszynLayout_Click(object sender, EventArgs e)
         {
-            throw new NotImplementedException();
+            Intent intent = new Intent(this, typeof(StanMaszynActivity));
+            StartActivity(intent);
         }
 
         private async void Profil()
