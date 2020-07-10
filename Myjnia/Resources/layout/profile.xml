@@ -39,6 +39,11 @@
         android:layout_toRightOf="@+id/UserProfileImageView"
         android:layout_below="@+id/ProfileWelcomeMessage"/>
  
+         <View
+         android:background="@color/textColor"
+         android:layout_below="@+id/UserProfileImageView"
+         android:layout_width="match_parent"
+         android:layout_height="1dp" />
        </RelativeLayout>
         <LinearLayout
             android:layout_weight="0.6"
