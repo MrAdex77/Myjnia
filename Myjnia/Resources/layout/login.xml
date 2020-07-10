@@ -13,7 +13,7 @@
         android:layout_centerInParent="true"
         android:layout_width="200dp"
         android:layout_height="200dp"
-        android:src="@drawable/logo"/>
+        android:src="@drawable/logo2"/>
     
     </RelativeLayout>
 
@@ -65,7 +65,7 @@
         android:layout_marginTop="10dp"
         android:textSize="16sp"
         android:gravity="right"
-        android:textColor="@color/textColor"
+        android:textColor="@color/white"
         android:text="Zapomniales hasla?"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
@@ -87,7 +87,7 @@
         android:layout_marginTop="40dp"
         android:textSize="16sp"
         android:gravity="center"
-        android:textColor="@color/textColor"
+        android:textColor="@color/white"
         android:textStyle="bold"
         android:text="Nie masz konta? Zarejestruj się"
         android:layout_width="match_parent"
