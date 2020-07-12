@@ -4,6 +4,7 @@ using Android.Views;
 using Android.Widget;
 using Android.Support.V7.Widget;
 using System.Collections.Generic;
+using Android.Graphics;
 
 namespace Myjnia.Adapters
 {
@@ -42,10 +43,12 @@ namespace Myjnia.Adapters
             if (machine.status == 1)
             {
                 holder.MachineDescriptionTextView.Text = "Aktualnie niedostępna";
+                holder.MachineDescriptionTextView.SetTextColor(Color.ParseColor("red"));
             }
             else
             {
                 holder.MachineDescriptionTextView.Text = "Aktualnie dostępna";
+                holder.MachineDescriptionTextView.SetTextColor(Color.ParseColor("green"));
             }
             //holder.TextView.Text = items[position];
         }
