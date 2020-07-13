@@ -31,7 +31,7 @@ namespace Myjnia
         private DateTime dateTime;
         private int timerCounter = 0;
         private string qrcode = string.Empty;
-        private System.Timers.Timer countDown = new System.Timers.Timer();
+        private readonly System.Timers.Timer countDown = new System.Timers.Timer();
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
