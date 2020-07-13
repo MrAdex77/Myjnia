@@ -51,7 +51,8 @@ namespace Myjnia
 
         private void UstawieniaLayout_Click(object sender, EventArgs e)
         {
-            throw new NotImplementedException();
+            Intent intent = new Intent(this, typeof(SettingsActivity));
+            StartActivity(intent);
         }
 
         private void KontoLayout_Click(object sender, EventArgs e)

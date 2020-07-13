@@ -1,0 +1,85 @@
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:background="@color/granat1"
+    android:gravity="center_horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+            android:id="@+id/MaszynaNazwaOpcjeTextView"
+            android:text="Ustawienia"
+            android:layout_marginBottom="40dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:gravity="center"
+            android:textStyle="bold"
+            />
+    <CheckBox android:id="@+id/checkbox"
+        android:buttonTint="@color/white"
+        android:textColor="@color/white"
+        android:gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Opcja 1" />
+             <View
+         android:background="@color/textColor"
+         android:layout_below="@+id/checkbox"
+         android:layout_width="match_parent"
+         android:layout_height="1dp" />
+    <CheckBox android:id="@+id/checkbox2"
+        android:buttonTint="@color/white"
+        android:textColor="@color/white"
+        android:gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Opcja 2" />
+                 <View
+         android:background="@color/textColor"
+         android:layout_below="@+id/checkbox2"
+         android:layout_width="match_parent"
+         android:layout_height="1dp" />
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_marginTop="10dp"
+        android:gravity="center_horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+    <TextView
+        android:layout_width="wrap_content"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        android:text="Opcja 3" 
+        android:layout_marginRight="10dp"
+        android:layout_height="wrap_content"/>
+    <ToggleButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+        </LinearLayout>
+         <View
+         android:background="@color/textColor"
+         android:layout_width="match_parent"
+         android:layout_height="1dp" />
+        <LinearLayout
+        android:orientation="horizontal"
+        android:gravity="center_horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+    <TextView
+        android:layout_width="wrap_content"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        android:text="Opcja 4" 
+        android:layout_marginRight="10dp"
+        android:layout_height="wrap_content"/>
+    <ToggleButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+        </LinearLayout>
+             <View
+         android:background="@color/textColor"
+         android:layout_width="match_parent"
+         android:layout_height="1dp" />
+</LinearLayout>
