@@ -5254,6 +5254,9 @@ namespace Myjnia
 			// aapt resource value: 0x7F0C0002
 			public const int ic_launcher_round = 2131492866;
 			
+			// aapt resource value: 0x7F0C0003
+			public const int ic_myjnia = 2131492867;
+			
 			static Mipmap()
 			{
 				global::Android.Runtime.ResourceIdManager.UpdateIdValues();
