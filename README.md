@@ -1,9 +1,9 @@
 # Myjnia
 Myjnia samochodowa z wykorzystaniem aplikacji mobilnej napisanej w xamarin android c#
 ## Logowanie
-<img src="https://github.com/MrAdex77/Myjnia/blob/master/Screenshots/Login.jpg"  width="400" height="400" />
+<img src="https://github.com/MrAdex77/Myjnia/blob/master/Screenshots/Login.jpg"  width="200" height="400" />
 ## Rejestracja
-<img src="https://github.com/MrAdex77/Myjnia/blob/master/Screenshots/Register.jpg"  width="400" height="400" />
+<img src="https://github.com/MrAdex77/Myjnia/blob/master/Screenshots/Register.jpg"  width="200" height="400" />
 ## Przypomnienie hasła
 <img src="https://github.com/MrAdex77/Myjnia/blob/master/Screenshots/RemaindPassword.jpg"  width="200" height="400" />
 ## Menu
