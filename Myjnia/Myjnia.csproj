@@ -154,6 +154,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Activitiess\" />
+    <Folder Include="Resources\xml\" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\layout\register.xml">
@@ -164,9 +165,6 @@
     <AndroidResource Include="Resources\layout\Home.xml">
       <SubType>Designer</SubType>
     </AndroidResource>
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\xml\file_paths.xml" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\layout\MyjniaOpcje.xml">

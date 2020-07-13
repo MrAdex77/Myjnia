@@ -3,15 +3,23 @@
     android:orientation="vertical"
     android:background="@color/granat1"
     android:layout_width="match_parent"
+    android:layout_gravity="center_vertical"
     android:layout_height="match_parent">
-
-
+            <TextView
+            android:id="@+id/MaszynaNazwaOpcjeTextView"
+            android:text="Stan Maszyn"
+            android:layout_marginBottom="40dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:gravity="center"
+            android:textStyle="bold"
+            />
     <android.support.v7.widget.RecyclerView
         android:id="@+id/MachinesRecyclerView"
         android:layout_width="match_parent"
         android:background="@color/granat1"
         android:scrollbars="vertical"
         android:layout_height="match_parent"/>
-
-
 </LinearLayout>

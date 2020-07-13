@@ -14,7 +14,7 @@ namespace Myjnia.Adapters
 
         public event EventHandler<MachinesAdapterClickEventArgs> ItemLongClick;
 
-        private List<Status> Machineslist;
+        private readonly List<Status> Machineslist;
 
         public MachinesAdapter(List<Status> data)
         {

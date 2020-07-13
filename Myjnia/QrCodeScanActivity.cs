@@ -28,8 +28,6 @@ namespace Myjnia
             Xamarin.Essentials.Platform.Init(this, savedInstanceState); // add this line to your code, it may also be called: bundle
 
             // Create your application here
-            //await RequestPermissions(permissionGroup, 0);
-            //var status = await Permissions.RequestAsync(permissionGroup);
             ScanCode();
         }
 
